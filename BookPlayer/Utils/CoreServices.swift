@@ -14,6 +14,7 @@ struct CoreServices {
   let dataManager: DataManager
   let hardcoverService: HardcoverService
   let libraryService: LibraryService
+  let bookmarkTranscriptionService: BookmarkTranscriptionService
   let playbackService: PlaybackService
   let playerLoaderService: PlayerLoaderService
   let playerManager: PlayerManager

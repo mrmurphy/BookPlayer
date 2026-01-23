@@ -18,6 +18,7 @@ struct BookmarksView: View {
   @State private var showingNoteAlert: SimpleBookmark?
   @State private var bookmarkToDelete: SimpleBookmark?
   @State private var noteText: String = ""
+  @State private var selectedBookmarkKey: BookmarkKey?
 
   @Environment(\.dismiss) private var dismiss
 
@@ -70,6 +71,13 @@ struct BookmarksView: View {
                   Image(systemName: "pencil")
                 }
                 .accessibilityLabel("bookmark_note_edit_title")
+
+                Button {
+                  selectedBookmarkKey = BookmarkKey(bookmark: bookmark)
+                } label: {
+                  Image(systemName: "quote.bubble")
+                }
+                .accessibilityLabel("Transcript")
               }
           }
         } header: {
@@ -140,6 +148,12 @@ struct BookmarksView: View {
       } message: { bookmark in
         Text(String(format: "delete_single_item_title".localized, TimeParser.formatTime(bookmark.time)))
       }
+      .sheet(item: $selectedBookmarkKey) { key in
+        BookmarkTranscriptSheet(
+          bookmarkKey: key,
+          model: model
+        )
+      }
     }
   }
 
@@ -155,10 +169,31 @@ struct BookmarksView: View {
           .bpFont(Fonts.caption)
           .foregroundStyle(theme.secondaryColor)
 
-        if let note = bookmark.note {
-          Text(note)
-            .bpFont(Fonts.body)
-            .foregroundStyle(theme.primaryColor)
+        VStack(alignment: .leading, spacing: Spacing.S1) {
+          if let note = bookmark.note {
+            Text(note)
+              .bpFont(Fonts.body)
+              .foregroundStyle(theme.primaryColor)
+          }
+
+          if let transcript = bookmark.transcriptText, !transcript.isEmpty {
+            Text(transcript)
+              .bpFont(Fonts.caption)
+              .foregroundStyle(theme.secondaryColor)
+              .lineLimit(2)
+          } else {
+            switch bookmark.transcriptState {
+            case .pending:
+              ProgressView()
+                .tint(theme.secondaryColor)
+            case .failed:
+              Text("Transcript unavailable")
+                .bpFont(Fonts.caption)
+                .foregroundStyle(theme.secondaryColor)
+            case .none, .ready:
+              EmptyView()
+            }
+          }
         }
 
         Spacer()
@@ -170,6 +205,157 @@ struct BookmarksView: View {
       }
     }
     .listRowBackground(theme.secondarySystemBackgroundColor)
+  }
+}
+
+private struct BookmarkKey: Hashable, Identifiable {
+  let relativePath: String
+  let time: Double
+  let type: BookmarkType
+
+  var id: String {
+    "\(relativePath)-\(time)-\(type.rawValue)"
+  }
+
+  init(bookmark: SimpleBookmark) {
+    self.relativePath = bookmark.relativePath
+    self.time = bookmark.time
+    self.type = bookmark.bookmarkType
+  }
+}
+
+private struct BookmarkTranscriptSheet: View {
+  let bookmarkKey: BookmarkKey
+  @ObservedObject var model: BookmarksView.Model
+
+  @Environment(\.dismiss) private var dismiss
+
+  private var bookmark: SimpleBookmark? {
+    model.userBookmarks.first(where: { item in
+      item.relativePath == bookmarkKey.relativePath
+        && item.time == bookmarkKey.time
+        && item.bookmarkType == bookmarkKey.type
+    })
+  }
+
+  var body: some View {
+    NavigationStack {
+      VStack(alignment: .leading, spacing: Spacing.S3) {
+        Text("Transcript")
+          .bpFont(Fonts.title)
+
+        if let bookmark {
+          transcriptContent(for: bookmark)
+          rangeControls(for: bookmark)
+        } else {
+          Text("Transcript unavailable")
+            .bpFont(Fonts.body)
+        }
+
+        Spacer()
+      }
+      .padding(Spacing.S4)
+      .toolbar {
+        ToolbarItem(placement: .confirmationAction) {
+          Button("ok_button".localized) {
+            dismiss()
+          }
+        }
+      }
+      .onAppear {
+        if let bookmark {
+          model.ensureTranscript(bookmark)
+        }
+      }
+    }
+  }
+
+  @ViewBuilder
+  private func transcriptContent(for bookmark: SimpleBookmark) -> some View {
+    if let transcript = bookmark.transcriptText, !transcript.isEmpty {
+      Text(transcript)
+        .bpFont(Fonts.body)
+        .foregroundStyle(Color.primary)
+    } else {
+      switch bookmark.transcriptState {
+      case .pending:
+        ProgressView()
+      case .failed:
+        Text("Transcript unavailable")
+          .bpFont(Fonts.body)
+          .foregroundStyle(Color.secondary)
+      case .none:
+        Text("Transcription ready when you are.")
+          .bpFont(Fonts.body)
+          .foregroundStyle(Color.secondary)
+      case .ready:
+        Text("Transcript unavailable")
+          .bpFont(Fonts.body)
+          .foregroundStyle(Color.secondary)
+      }
+    }
+  }
+
+  @ViewBuilder
+  private func rangeControls(for bookmark: SimpleBookmark) -> some View {
+    VStack(alignment: .leading, spacing: Spacing.S2) {
+      Text("Quote range")
+        .bpFont(Fonts.caption)
+        .foregroundStyle(Color.secondary)
+
+      RangeAdjuster(
+        title: "Start",
+        value: bookmark.transcriptStartOffset,
+        onDecrease: {
+          model.adjustTranscriptStart(bookmark, delta: -Constants.BookmarkTranscript.adjustmentStep)
+        },
+        onIncrease: {
+          model.adjustTranscriptStart(bookmark, delta: Constants.BookmarkTranscript.adjustmentStep)
+        }
+      )
+
+      RangeAdjuster(
+        title: "End",
+        value: bookmark.transcriptEndOffset,
+        onDecrease: {
+          model.adjustTranscriptEnd(bookmark, delta: -Constants.BookmarkTranscript.adjustmentStep)
+        },
+        onIncrease: {
+          model.adjustTranscriptEnd(bookmark, delta: Constants.BookmarkTranscript.adjustmentStep)
+        }
+      )
+    }
+  }
+}
+
+private struct RangeAdjuster: View {
+  let title: String
+  let value: TimeInterval
+  let onDecrease: () -> Void
+  let onIncrease: () -> Void
+
+  var body: some View {
+    HStack(spacing: Spacing.S2) {
+      Text(title)
+        .bpFont(Fonts.body)
+
+      Spacer()
+
+      Button(action: onDecrease) {
+        Image(systemName: "minus.circle")
+      }
+      .disabled(value <= Constants.BookmarkTranscript.minOffset)
+
+      Text("\(Int(value))s")
+        .bpFont(Fonts.caption)
+        .foregroundStyle(Color.secondary)
+        .frame(minWidth: 44)
+
+      Button(action: onIncrease) {
+        Image(systemName: "plus.circle")
+      }
+      .disabled(value >= Constants.BookmarkTranscript.maxOffset)
+    }
   }
 }
 
@@ -192,6 +378,9 @@ extension BookmarksView {
     func handleBookmarkSelected(_ bookmark: SimpleBookmark) {}
     func deleteBookmark(_ bookmark: SimpleBookmark) {}
     func addNote(_ note: String, bookmark: SimpleBookmark) {}
+    func ensureTranscript(_ bookmark: SimpleBookmark) {}
+    func adjustTranscriptStart(_ bookmark: SimpleBookmark, delta: TimeInterval) {}
+    func adjustTranscriptEnd(_ bookmark: SimpleBookmark, delta: TimeInterval) {}
   }
 }
 

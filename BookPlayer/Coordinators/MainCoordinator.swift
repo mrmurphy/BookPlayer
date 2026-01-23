@@ -29,6 +29,7 @@ class MainCoordinator: NSObject {
   let jellyfinConnectionService: JellyfinConnectionService
   let audiobookshelfConnectionService: AudiobookShelfConnectionService
   let hardcoverService: HardcoverService
+  let bookmarkTranscriptionService: BookmarkTranscriptionService
 
   let playerState = PlayerState()
 
@@ -44,6 +45,7 @@ class MainCoordinator: NSObject {
   ) {
     self.navigationController = navigationController
     self.libraryService = coreServices.libraryService
+    self.bookmarkTranscriptionService = coreServices.bookmarkTranscriptionService
     self.importManager = ImportManager(libraryService: coreServices.libraryService)
     self.accountService = coreServices.accountService
     self.syncService = coreServices.syncService
@@ -197,7 +199,8 @@ class MainCoordinator: NSObject {
       flow: .modalOnlyFlow(presentingController: mainController!, modalPresentationStyle: .overFullScreen),
       playerManager: self.playerManager,
       libraryService: self.libraryService,
-      syncService: self.syncService
+      syncService: self.syncService,
+      bookmarkTranscriptionService: self.bookmarkTranscriptionService
     )
     playerCoordinator.start()
   }

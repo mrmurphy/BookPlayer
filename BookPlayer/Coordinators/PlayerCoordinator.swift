@@ -15,6 +15,7 @@ class PlayerCoordinator: Coordinator {
   let playerManager: PlayerManager
   let libraryService: LibraryService
   let syncService: SyncServiceProtocol
+  let bookmarkTranscriptionService: BookmarkTranscriptionServiceProtocol
 
   let flow: BPCoordinatorPresentationFlow
 
@@ -31,12 +32,14 @@ class PlayerCoordinator: Coordinator {
     flow: BPModalOnlyPresentationFlow,
     playerManager: PlayerManager,
     libraryService: LibraryService,
-    syncService: SyncServiceProtocol
+    syncService: SyncServiceProtocol,
+    bookmarkTranscriptionService: BookmarkTranscriptionServiceProtocol
   ) {
     self.flow = flow
     self.playerManager = playerManager
     self.libraryService = libraryService
     self.syncService = syncService
+    self.bookmarkTranscriptionService = bookmarkTranscriptionService
   }
 
   func start() {
@@ -45,7 +48,8 @@ class PlayerCoordinator: Coordinator {
     let viewModel = PlayerViewModel(
       playerManager: self.playerManager,
       libraryService: self.libraryService,
-      syncService: self.syncService
+      syncService: self.syncService,
+      bookmarkTranscriptionService: self.bookmarkTranscriptionService
     )
     viewModel.onTransition = { routes in
       switch routes {
@@ -68,7 +72,8 @@ class PlayerCoordinator: Coordinator {
         BookmarksViewModel(
           playerManager: self.playerManager,
           libraryService: self.libraryService,
-          syncService: self.syncService
+          syncService: self.syncService,
+          bookmarkTranscriptionService: self.bookmarkTranscriptionService
         )
       }
     )
@@ -82,7 +87,8 @@ class PlayerCoordinator: Coordinator {
         ButtonFreeViewModel(
           playerManager: self.playerManager,
           libraryService: self.libraryService,
-          syncService: self.syncService
+          syncService: self.syncService,
+          bookmarkTranscriptionService: self.bookmarkTranscriptionService
         )
       }
     )

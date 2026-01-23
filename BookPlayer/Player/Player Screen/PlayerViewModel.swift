@@ -28,6 +28,7 @@ class PlayerViewModel: ViewModelProtocol {
   private let playerManager: PlayerManagerProtocol
   private let libraryService: LibraryServiceProtocol
   private let syncService: SyncServiceProtocol
+  private let bookmarkTranscriptionService: BookmarkTranscriptionServiceProtocol
   private var chapterBeforeSliderValueChange: PlayableChapter?
   private let sharedDefaults: UserDefaults
   private var prefersChapterContext: Bool
@@ -47,11 +48,13 @@ class PlayerViewModel: ViewModelProtocol {
   init(
     playerManager: PlayerManagerProtocol,
     libraryService: LibraryServiceProtocol,
-    syncService: SyncServiceProtocol
+    syncService: SyncServiceProtocol,
+    bookmarkTranscriptionService: BookmarkTranscriptionServiceProtocol
   ) {
     self.playerManager = playerManager
     self.libraryService = libraryService
     self.syncService = syncService
+    self.bookmarkTranscriptionService = bookmarkTranscriptionService
     let sharedDefaults = UserDefaults.sharedDefaults
     self.prefersChapterContext = sharedDefaults.bool(forKey: Constants.UserDefaults.chapterContextEnabled)
     self.prefersRemainingTime = sharedDefaults.bool(forKey: Constants.UserDefaults.remainingTimeEnabled)
@@ -540,6 +543,7 @@ extension PlayerViewModel {
         time: floor(currentTime),
         note: nil
       )
+      bookmarkTranscriptionService.startTranscription(for: bookmark, in: currentItem)
       self.showBookmarkSuccessAlert(vc: vc, bookmark: bookmark, existed: false)
     } else {
       vc.showAlert("error_title".localized, message: "file_missing_title".localized)

@@ -14,15 +14,18 @@ final class ButtonFreeViewModel: ButtonFreeView.Model {
   let playerManager: PlayerManagerProtocol
   let libraryService: LibraryServiceProtocol
   let syncService: SyncServiceProtocol
+  let bookmarkTranscriptionService: BookmarkTranscriptionServiceProtocol
 
   init(
     playerManager: PlayerManagerProtocol,
     libraryService: LibraryServiceProtocol,
-    syncService: SyncServiceProtocol
+    syncService: SyncServiceProtocol,
+    bookmarkTranscriptionService: BookmarkTranscriptionServiceProtocol
   ) {
     self.playerManager = playerManager
     self.libraryService = libraryService
     self.syncService = syncService
+    self.bookmarkTranscriptionService = bookmarkTranscriptionService
   }
 
   override func disableTimer(_ flag: Bool) {
@@ -88,6 +91,7 @@ final class ButtonFreeViewModel: ButtonFreeView.Model {
         time: currentTime,
         note: nil
       )
+      bookmarkTranscriptionService.startTranscription(for: bookmark, in: currentItem)
       let formattedTime = TimeParser.formatTime(bookmark.time)
       return String.localizedStringWithFormat(
         "bookmark_created_title".localized,

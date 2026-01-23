@@ -403,6 +403,8 @@
 	</dict>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Enable microphone access so you can record audio</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Enable speech recognition to generate bookmark transcripts</string>
 	<key>NSSiriUsageDescription</key>
 	<string>Siri shortcuts</string>
 	<key>NSUserActivityTypes</key>

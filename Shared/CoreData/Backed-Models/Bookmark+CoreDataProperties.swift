@@ -22,6 +22,10 @@ extension Bookmark {
 
   @NSManaged public var time: Double
   @NSManaged public var note: String?
+  @NSManaged public var transcriptEndOffset: Double
+  @NSManaged public var transcriptStartOffset: Double
+  @NSManaged public var transcriptState: Int16
+  @NSManaged public var transcriptText: String?
   @NSManaged public var type: BookmarkType
   @NSManaged public var item: LibraryItem?
 }

@@ -504,6 +504,7 @@ extension AppDelegate {
 
         AppDependencyManager.shared.add(dependency: coreServices.playerLoaderService)
         AppDependencyManager.shared.add(dependency: coreServices.libraryService)
+        AppDependencyManager.shared.add(dependency: coreServices.bookmarkTranscriptionService)
       } catch {
         errorCoreServicesSetup = error
       }
@@ -525,6 +526,7 @@ extension AppDelegate {
       let accountService = makeAccountService(dataManager: dataManager)
       let audioMetadataService = makeAudioMetadataService()
       let libraryService = makeLibraryService(dataManager: dataManager, audioMetadataService: audioMetadataService)
+      let bookmarkTranscriptionService = BookmarkTranscriptionService(dataManager: dataManager)
       let syncService = makeSyncService(accountService: accountService, libraryService: libraryService)
       let playbackService = makePlaybackService(libraryService: libraryService)
       let playerManager = PlayerManager(
@@ -553,6 +555,7 @@ extension AppDelegate {
         dataManager: dataManager,
         hardcoverService: hardcoverService,
         libraryService: libraryService,
+        bookmarkTranscriptionService: bookmarkTranscriptionService,
         playbackService: playbackService,
         playerLoaderService: playerLoaderService,
         playerManager: playerManager,

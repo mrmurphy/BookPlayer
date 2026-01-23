@@ -213,6 +213,7 @@ class CarPlayManager: NSObject {
           time: currentTime,
           note: nil
         )
+        coreServices.bookmarkTranscriptionService.startTranscription(for: bookmark, in: currentItem)
         let formattedTime = TimeParser.formatTime(bookmark.time)
         alertTitle = String.localizedStringWithFormat("bookmark_created_title".localized, formattedTime)
       } else {

@@ -92,6 +92,14 @@ public enum Constants {
     public static let minRewind: TimeInterval = 2
   }
 
+  public enum BookmarkTranscript {
+    public static let defaultStartOffset: TimeInterval = 3
+    public static let defaultEndOffset: TimeInterval = 10
+    public static let adjustmentStep: TimeInterval = 2
+    public static let minOffset: TimeInterval = 0
+    public static let maxOffset: TimeInterval = 30
+  }
+
   public enum Volume {
     public static let normal: Float = 1.0
     public static let boosted: Float = 2.0

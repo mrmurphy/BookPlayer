@@ -6,6 +6,7 @@
 //  Copyright © 2023 BookPlayer LLC. All rights reserved.
 //
 
+import Combine
 import XCTest
 
 @testable import BookPlayer
@@ -13,13 +14,31 @@ import XCTest
 
 final class PlayerViewModelTests: XCTestCase {
 
+  private final class BookmarkTranscriptionServiceMock: BookmarkTranscriptionServiceProtocol {
+    var bookmarkUpdatesPublisher: AnyPublisher<String, Never> {
+      Empty().eraseToAnyPublisher()
+    }
+
+    func startTranscription(for bookmark: SimpleBookmark, in item: PlayableItem) {}
+
+    func updateTranscriptRange(
+      for bookmark: SimpleBookmark,
+      in item: PlayableItem,
+      startOffset: TimeInterval,
+      endOffset: TimeInterval
+    ) {}
+
+    func cancelTranscription(for bookmark: SimpleBookmark) {}
+  }
+
   var sut: PlayerViewModel!
 
   override func setUpWithError() throws {
     sut = PlayerViewModel(
       playerManager: PlayerManagerProtocolMock(),
       libraryService: LibraryServiceProtocolMock(),
-      syncService: SyncServiceProtocolMock()
+      syncService: SyncServiceProtocolMock(),
+      bookmarkTranscriptionService: BookmarkTranscriptionServiceMock()
     )
   }
 
