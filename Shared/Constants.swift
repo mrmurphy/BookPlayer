@@ -85,6 +85,17 @@ public enum Constants {
     public static let quickSpeedFirstPreference = "quickSpeedFirstPreference"
     public static let quickSpeedSecondPreference = "quickSpeedSecondPreference"
     public static let quickSpeedThirdPreference = "quickSpeedThirdPreference"
+
+    /// Transcript engine: "apple" (default) or "parakeet". Parakeet requires iOS 17+.
+    public static let transcriptEngine = "userSettingsTranscriptEngine"
+    /// Parakeet model version: "v2" or "v3". Used when transcript engine is Parakeet.
+    public static let parakeetModelVersion = "userSettingsParakeetModelVersion"
+    /// Set to true when Parakeet ASR model V2 has been successfully downloaded and loaded at least once.
+    public static let parakeetModelDownloadedV2 = "userSettingsParakeetModelDownloadedV2"
+    /// Set to true when Parakeet ASR model V3 has been successfully downloaded and loaded at least once.
+    public static let parakeetModelDownloadedV3 = "userSettingsParakeetModelDownloadedV3"
+    /// Deprecated: use parakeetModelDownloadedV2 / parakeetModelDownloadedV3.
+    public static let parakeetModelDownloaded = "userSettingsParakeetModelDownloaded"
   }
 
   public enum SmartRewind {
