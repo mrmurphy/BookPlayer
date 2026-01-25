@@ -98,6 +98,8 @@ public enum Constants {
     public static let adjustmentStep: TimeInterval = 2
     public static let minOffset: TimeInterval = 0
     public static let maxOffset: TimeInterval = 30
+    /// Apple's Speech framework allows up to one minute of audio per request. Segments longer than this are clamped.
+    public static let maxSegmentDuration: TimeInterval = 60
   }
 
   public enum Volume {

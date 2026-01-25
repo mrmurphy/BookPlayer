@@ -164,8 +164,13 @@ final class BookmarkTranscriptionService: BPLogger, BookmarkTranscriptionService
     let startGlobal = max(bookmark.time - startOffset, chapter.start)
     let endGlobal = min(bookmark.time + endOffset, chapter.end)
     let startTime = max(item.getChapterTime(in: chapter, for: startGlobal), 0)
-    let endTime = max(item.getChapterTime(in: chapter, for: endGlobal), 0)
-    let duration = max(endTime - startTime, 0)
+    var endTime = max(item.getChapterTime(in: chapter, for: endGlobal), 0)
+    var duration = max(endTime - startTime, 0)
+
+    if duration > Constants.BookmarkTranscript.maxSegmentDuration {
+      duration = Constants.BookmarkTranscript.maxSegmentDuration
+      endTime = startTime + duration
+    }
 
     guard duration > 0 else { return nil }
     guard FileManager.default.fileExists(atPath: chapter.fileURL.path) else { return nil }
@@ -195,23 +200,34 @@ final class BookmarkTranscriptionService: BPLogger, BookmarkTranscriptionService
     }
 
     let request = SFSpeechURLRecognitionRequest(url: audioURL)
-    request.shouldReportPartialResults = false
+    request.shouldReportPartialResults = true
     if #available(iOS 13.0, *) {
       request.requiresOnDeviceRecognition = true
     }
 
     return try await withCheckedThrowingContinuation { continuation in
       var resumed = false
+      var lastTranscription: String?
       _ = recognizer.recognitionTask(with: request) { result, error in
-        if let error, !resumed {
-          resumed = true
-          continuation.resume(throwing: error)
-          return
+        if let result {
+          let text = result.bestTranscription.formattedString
+          if !text.isEmpty {
+            lastTranscription = text
+          }
+          if result.isFinal, !resumed {
+            resumed = true
+            continuation.resume(returning: text.isEmpty ? (lastTranscription ?? "") : text)
+            return
+          }
         }
 
-        if let result, result.isFinal, !resumed {
+        if let error, !resumed {
           resumed = true
-          continuation.resume(returning: result.bestTranscription.formattedString)
+          if let last = lastTranscription, !last.isEmpty {
+            continuation.resume(returning: last)
+          } else {
+            continuation.resume(throwing: error)
+          }
         }
       }
     }
