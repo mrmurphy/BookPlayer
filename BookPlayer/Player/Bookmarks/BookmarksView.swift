@@ -8,6 +8,7 @@
 
 import BookPlayerKit
 import SwiftUI
+import UIKit
 
 struct BookmarksView: View {
   @AppStorage(Constants.UserDefaults.isAutomaticBookmarksSectionCollapsed)
@@ -54,7 +55,7 @@ struct BookmarksView: View {
         // User bookmarks section
         Section {
           ForEach(model.userBookmarks) { bookmark in
-            bookmarkRow(bookmark)
+            bookmarkRow(bookmark, onTranscriptTap: { selectedBookmarkKey = BookmarkKey(bookmark: $0) })
               .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                 Button(role: .destructive) {
                   bookmarkToDelete = bookmark
@@ -158,7 +159,7 @@ struct BookmarksView: View {
   }
 
   @ViewBuilder
-  private func bookmarkRow(_ bookmark: SimpleBookmark) -> some View {
+  private func bookmarkRow(_ bookmark: SimpleBookmark, onTranscriptTap: ((SimpleBookmark) -> Void)? = nil) -> some View {
     Button {
       model.handleBookmarkSelected(bookmark)
       dismiss()
@@ -197,6 +198,17 @@ struct BookmarksView: View {
         }
 
         Spacer()
+
+        if bookmark.bookmarkType == .user, let onTranscriptTap {
+          Button {
+            onTranscriptTap(bookmark)
+          } label: {
+            Image(systemName: "quote.bubble")
+              .foregroundStyle(theme.secondaryColor)
+          }
+          .buttonStyle(.borderless)
+          .accessibilityLabel("Transcript")
+        }
 
         if let imageName = bookmark.getImageNameForType() {
           Image(systemName: imageName)
@@ -256,6 +268,13 @@ private struct BookmarkTranscriptSheet: View {
       }
       .padding(Spacing.S4)
       .toolbar {
+        ToolbarItem(placement: .primaryAction) {
+          if let bookmark, let text = bookmark.transcriptText, !text.isEmpty {
+            Button("copy_button".localized) {
+              UIPasteboard.general.string = text
+            }
+          }
+        }
         ToolbarItem(placement: .confirmationAction) {
           Button("ok_button".localized) {
             dismiss()
