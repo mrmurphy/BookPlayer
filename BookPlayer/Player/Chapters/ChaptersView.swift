@@ -30,6 +30,7 @@ struct ChaptersView: View {
           if let currentChapter = model.currentChapter {
             proxy.scrollTo(currentChapter.id, anchor: .center)
           }
+          model.loadPreviewsIfNeeded()
         }
         .listStyle(.plain)
         .applyListStyle(with: theme, background: theme.systemBackgroundColor)
@@ -58,6 +59,8 @@ struct ChaptersView: View {
       TimeParser.formatTime(chapter.start),
       TimeParser.formatTime(chapter.duration)
     )
+    let previewText = model.previewTexts[chapter.index].flatMap { $0.isEmpty ? nil : $0 }
+    let isTranscribing = model.transcribingChapterIndex == chapter.index
     Button {
       model.handleChapterSelected(chapter)
       dismiss()
@@ -70,6 +73,20 @@ struct ChaptersView: View {
           Text(subtitle)
             .bpFont(Fonts.caption)
             .foregroundStyle(theme.secondaryColor)
+          if isTranscribing {
+            HStack(spacing: Spacing.S4) {
+              ProgressView()
+                .scaleEffect(0.85)
+              Text(NSLocalizedString("chapters_preview_transcribing", comment: ""))
+                .bpFont(Fonts.caption)
+                .foregroundStyle(theme.secondaryColor)
+            }
+          } else if let previewText {
+            Text(previewText)
+              .bpFont(Fonts.caption)
+              .foregroundStyle(theme.secondaryColor)
+              .lineLimit(2)
+          }
         }
         Spacer()
         if chapter == model.currentChapter {
@@ -86,6 +103,10 @@ extension ChaptersView {
   class Model: ObservableObject {
     @Published var chapters: [PlayableChapter]
     @Published var currentChapter: PlayableChapter?
+    /// Chapter index -> preview transcription (first ~15s). Updated when loadPreviewsIfNeeded runs.
+    @Published var previewTexts: [Int16: String] = [:]
+    /// Index of the chapter currently being transcribed (one at a time). Nil when idle.
+    @Published var transcribingChapterIndex: Int16?
 
     init(chapters: [PlayableChapter], currentChapter: PlayableChapter?) {
       self.chapters = chapters
@@ -93,6 +114,9 @@ extension ChaptersView {
     }
 
     func handleChapterSelected(_ chapter: PlayableChapter) {}
+
+    /// Override to load chapter preview transcriptions when the chapters view appears.
+    func loadPreviewsIfNeeded() {}
   }
 }
 

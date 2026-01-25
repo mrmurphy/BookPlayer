@@ -63,6 +63,9 @@
 "settings_app_icon_title" = "App Icon";
 "settings_playback_title" = "Playback Settings";
 "settings_controls_title" = "Player Controls";
+"settings_transcript_title" = "Transcript";
+"settings_transcript_reset_cache" = "Reset transcription cache";
+"settings_transcript_reset_cache_footer" = "Delete all cached transcript text. New transcripts will be generated when you open chapters or use bookmarks.";
 "settings_transcript_engine_title" = "Transcript engine";
 "settings_transcript_engine_apple" = "Apple Speech";
 "settings_transcript_engine_parakeet" = "Parakeet";
@@ -113,6 +116,7 @@
 "player_chapter_description" = "Chapter %d of %d";
 "chapters_title" = "Chapters";
 "chapters_item_description" = "Start: %@ - Duration: %@";
+"chapters_preview_transcribing" = "Transcribing…";
 "restore_title" = "Restore";
 "themes_caps_title" = "THEMES";
 "plus_app_icons_title" = "App Icons";

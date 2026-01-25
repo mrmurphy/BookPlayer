@@ -113,6 +113,11 @@ public enum Constants {
     public static let maxSegmentDuration: TimeInterval = 60
   }
 
+  /// Duration (seconds) of chapter start transcribed for the chapters list preview.
+  public enum ChapterPreview {
+    public static let defaultDuration: TimeInterval = 15
+  }
+
   public enum Volume {
     public static let normal: Float = 1.0
     public static let boosted: Float = 2.0

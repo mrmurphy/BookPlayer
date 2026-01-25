@@ -209,6 +209,13 @@
 		41B2A5ED21CCC6D100917584 /* AppNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B2A5EC21CCC6D100917584 /* AppNavigationController.swift */; };
 		41B30A33230232D200025D69 /* CarPlayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B30A32230232D200025D69 /* CarPlayManager.swift */; };
 		8A7F9A303B2E9C1100A1B2C3 /* BookmarkTranscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A2F3B2E9C1100A1B2C3 /* BookmarkTranscriptionService.swift */; };
+		8A7F9A3B2E9C1100A1B2C5 /* PlaybackTranscriptStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A3A2E9C1100A1B2C5 /* PlaybackTranscriptStore.swift */; };
+		8A7F9A442E9C1100A1B2C7 /* TranscriptEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A432E9C1100A1B2C7 /* TranscriptEngine.swift */; };
+		8A7F9A462E9C1100A1B2C7 /* AppleSpeechTranscriptEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A452E9C1100A1B2C7 /* AppleSpeechTranscriptEngine.swift */; };
+		8A7F9A482E9C1100A1B2C7 /* ParakeetTranscriptEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A472E9C1100A1B2C7 /* ParakeetTranscriptEngine.swift */; };
+		8A7F9A4A2E9C1100A1B2C7 /* TranscriptEngineFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A492E9C1100A1B2C7 /* TranscriptEngineFactory.swift */; };
+		8A7F9A4C2E9C1100A1B2C7 /* LiveTranscriptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A4B2E9C1100A1B2C7 /* LiveTranscriptController.swift */; };
+		8A7F9A4E2E9C1100A1B2C7 /* ChapterPreviewTranscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A4D2E9C1100A1B2C7 /* ChapterPreviewTranscriptionService.swift */; };
 		41C233FD272E1957006BC7B8 /* SimpleLibraryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41188D3026ED715D0017124E /* SimpleLibraryItem.swift */; };
 		41C233FE272E1958006BC7B8 /* SimpleLibraryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41188D3026ED715D0017124E /* SimpleLibraryItem.swift */; };
 		41C233FF272E195B006BC7B8 /* SimpleItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41546FF226F559CE00825180 /* SimpleItemType.swift */; };
@@ -346,6 +353,7 @@
 		631908A32E3693BC009249C1 /* SettingsPlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631908A22E3693BC009249C1 /* SettingsPlayerControlsView.swift */; };
 		631908A62E369572009249C1 /* ProgressLabelsSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631908A52E369572009249C1 /* ProgressLabelsSectionView.swift */; };
 		631908A82E3697DC009249C1 /* ListOptionsSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631908A72E3697DC009249C1 /* ListOptionsSectionView.swift */; };
+		8A7F9A4A2E9C1100A1B2C8 /* TranscriptEngineSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A492E9C1100A1B2C8 /* TranscriptEngineSectionView.swift */; };
 		631908AA2E369BDB009249C1 /* ProgressSeekingSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631908A92E369BDA009249C1 /* ProgressSeekingSectionView.swift */; };
 		631908AC2E369E31009249C1 /* GlobalSpeedSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631908AB2E369E31009249C1 /* GlobalSpeedSectionView.swift */; };
 		631908AE2E369EDC009249C1 /* BoostVolumeSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631908AD2E369EDC009249C1 /* BoostVolumeSectionView.swift */; };
@@ -590,6 +598,7 @@
 		63C48D522E50AAA1005FBB96 /* AccountPasskeySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C48D532E50AAA1005FBB96 /* AccountPasskeySectionView.swift */; };
 		63C6C2E62B5029BC00FFE0D8 /* SettingsAutolockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6C2E52B5029BC00FFE0D8 /* SettingsAutolockView.swift */; };
 		63C6C2E82B5029FE00FFE0D8 /* SettingsAutolockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6C2E72B5029FE00FFE0D8 /* SettingsAutolockViewModel.swift */; };
+		8A7F9A512E9C1100A1B2C9 /* SettingsTranscriptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A502E9C1100A1B2C9 /* SettingsTranscriptView.swift */; };
 		63C6C30D2B538D8500FFE0D8 /* SyncTasksStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6C30B2B538B7A00FFE0D8 /* SyncTasksStorage.swift */; };
 		63C6C30E2B538D8600FFE0D8 /* SyncTasksStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6C30B2B538B7A00FFE0D8 /* SyncTasksStorage.swift */; };
 		63C6C3112B54F16800FFE0D8 /* LibraryItemSyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6C30F2B54F14800FFE0D8 /* LibraryItemSyncOperation.swift */; };
@@ -1170,6 +1179,13 @@
 		41B2A6AB21D3274500917584 /* Themeable.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Themeable.framework; path = Carthage/Build/iOS/Themeable.framework; sourceTree = "<group>"; };
 		41B30A32230232D200025D69 /* CarPlayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayManager.swift; sourceTree = "<group>"; };
 		8A7F9A2F3B2E9C1100A1B2C3 /* BookmarkTranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTranscriptionService.swift; sourceTree = "<group>"; };
+		8A7F9A3A2E9C1100A1B2C5 /* PlaybackTranscriptStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackTranscriptStore.swift; sourceTree = "<group>"; };
+		8A7F9A432E9C1100A1B2C7 /* TranscriptEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptEngine.swift; sourceTree = "<group>"; };
+		8A7F9A452E9C1100A1B2C7 /* AppleSpeechTranscriptEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSpeechTranscriptEngine.swift; sourceTree = "<group>"; };
+		8A7F9A472E9C1100A1B2C7 /* ParakeetTranscriptEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParakeetTranscriptEngine.swift; sourceTree = "<group>"; };
+		8A7F9A492E9C1100A1B2C7 /* TranscriptEngineFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptEngineFactory.swift; sourceTree = "<group>"; };
+		8A7F9A4B2E9C1100A1B2C7 /* LiveTranscriptController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTranscriptController.swift; sourceTree = "<group>"; };
+		8A7F9A4D2E9C1100A1B2C7 /* ChapterPreviewTranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterPreviewTranscriptionService.swift; sourceTree = "<group>"; };
 		41C3394825E04091003ED2B0 /* MappingModel_v2_to_v3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MappingModel_v2_to_v3.xcmappingmodel; sourceTree = "<group>"; };
 		41C3CF7D20AEA5E5007C3EF4 /* DataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerTests.swift; sourceTree = "<group>"; };
 		41C8ABD026836F50003B67D1 /* ImportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewModel.swift; sourceTree = "<group>"; };
@@ -1264,6 +1280,7 @@
 		631908A22E3693BC009249C1 /* SettingsPlayerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPlayerControlsView.swift; sourceTree = "<group>"; };
 		631908A52E369572009249C1 /* ProgressLabelsSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressLabelsSectionView.swift; sourceTree = "<group>"; };
 		631908A72E3697DC009249C1 /* ListOptionsSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOptionsSectionView.swift; sourceTree = "<group>"; };
+		8A7F9A492E9C1100A1B2C8 /* TranscriptEngineSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptEngineSectionView.swift; sourceTree = "<group>"; };
 		631908A92E369BDA009249C1 /* ProgressSeekingSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSeekingSectionView.swift; sourceTree = "<group>"; };
 		631908AB2E369E31009249C1 /* GlobalSpeedSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSpeedSectionView.swift; sourceTree = "<group>"; };
 		631908AD2E369EDC009249C1 /* BoostVolumeSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoostVolumeSectionView.swift; sourceTree = "<group>"; };
@@ -1511,6 +1528,7 @@
 		63C48D532E50AAA1005FBB96 /* AccountPasskeySectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPasskeySectionView.swift; sourceTree = "<group>"; };
 		63C6C2E52B5029BC00FFE0D8 /* SettingsAutolockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAutolockView.swift; sourceTree = "<group>"; };
 		63C6C2E72B5029FE00FFE0D8 /* SettingsAutolockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAutolockViewModel.swift; sourceTree = "<group>"; };
+		8A7F9A502E9C1100A1B2C9 /* SettingsTranscriptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTranscriptView.swift; sourceTree = "<group>"; };
 		63C6C30B2B538B7A00FFE0D8 /* SyncTasksStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncTasksStorage.swift; sourceTree = "<group>"; };
 		63C6C30F2B54F14800FFE0D8 /* LibraryItemSyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryItemSyncOperation.swift; sourceTree = "<group>"; };
 		63C6C3172B5E0FE700FFE0D8 /* SyncTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncTask.swift; sourceTree = "<group>"; };
@@ -2554,6 +2572,7 @@
 				631908AB2E369E31009249C1 /* GlobalSpeedSectionView.swift */,
 				631908A92E369BDA009249C1 /* ProgressSeekingSectionView.swift */,
 				631908A72E3697DC009249C1 /* ListOptionsSectionView.swift */,
+				8A7F9A492E9C1100A1B2C8 /* TranscriptEngineSectionView.swift */,
 				631908A52E369572009249C1 /* ProgressLabelsSectionView.swift */,
 			);
 			path = PlayerControls;
@@ -2982,6 +3001,12 @@
 				41D39D40215F177D00B65290 /* BookActivityItemProvider.swift */,
 				41B30A32230232D200025D69 /* CarPlayManager.swift */,
 				8A7F9A2F3B2E9C1100A1B2C3 /* BookmarkTranscriptionService.swift */,
+				8A7F9A3A2E9C1100A1B2C5 /* PlaybackTranscriptStore.swift */,
+				8A7F9A432E9C1100A1B2C7 /* TranscriptEngine.swift */,
+				8A7F9A452E9C1100A1B2C7 /* AppleSpeechTranscriptEngine.swift */,
+				8A7F9A472E9C1100A1B2C7 /* ParakeetTranscriptEngine.swift */,
+				8A7F9A492E9C1100A1B2C7 /* TranscriptEngineFactory.swift */,
+				8A7F9A4D2E9C1100A1B2C7 /* ChapterPreviewTranscriptionService.swift */,
 				4193E201243A91AE004D6A82 /* ActionParserService.swift */,
 				9F82DF9B27DFE46B001B0EA8 /* PhoneWatchConnectivityService.swift */,
 				63B50F042B692E4200BCABBA /* ListSyncRefreshService.swift */,
@@ -3304,6 +3329,14 @@
 			path = Library;
 			sourceTree = "<group>";
 		};
+		8A7F9A522E9C1100A1B2C9 /* Transcript */ = {
+			isa = PBXGroup;
+			children = (
+				8A7F9A502E9C1100A1B2C9 /* SettingsTranscriptView.swift */,
+			);
+			path = Transcript;
+			sourceTree = "<group>";
+		};
 		C35E04F2207E8D4C007D3370 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -3312,6 +3345,7 @@
 				4124121B26CF289B00B099DB /* Storage */,
 				6304CF682B4C2AB000055285 /* Autoplay */,
 				63C6C2E42B50299D00FFE0D8 /* Autolock */,
+				8A7F9A522E9C1100A1B2C9 /* Transcript */,
 				6370427E2E2BEAC7005353D1 /* SettingsView.swift */,
 				63C48D3B2E3E7D29005FBB96 /* SettingsCompleteAccountView.swift */,
 				631908A02E33EF50009249C1 /* ConfettiView.swift */,
@@ -3428,6 +3462,7 @@
 				9F64C6222793C37C00B2493C /* Controls */,
 				9F3D0CE328C2BF2A00E9E8A3 /* ButtonFree */,
 				410D0FF01EDF659900A52EB9 /* PlayerManager.swift */,
+				8A7F9A4B2E9C1100A1B2C7 /* LiveTranscriptController.swift */,
 				63E893972CAFAC7500946CD4 /* PlayerManagerProtocol.swift */,
 				63E893912CAFA89000946CD4 /* BPPlayerError.swift */,
 				63E893942CAFAB8F00946CD4 /* PlayerLoaderService.swift */,
@@ -3607,6 +3642,7 @@
 				41F1A227254B0C6C0043FCF3 /* ZipArchive */,
 				8A495CC52CC85D27001B4244 /* JellyfinAPI */,
 				63AE44722E6161B60088668F /* DirectoryWatcher */,
+				8A7F9A412E9C1100A1B2C6 /* FluidAudio */,
 			);
 			productName = "Audiobook Player";
 			productReference = 418B6CF81D2707F800F974FB /* BookPlayer.app */;
@@ -3786,7 +3822,7 @@
 				ca,
 			);
 			mainGroup = 418B6CEF1D2707F700F974FB;
-			packageReferences = (
+				packageReferences = (
 				41F1A1D5254B07E80043FCF3 /* XCRemoteSwiftPackageReference "MarqueeLabel" */,
 				41F1A1DE254B08A10043FCF3 /* XCRemoteSwiftPackageReference "DeviceKit" */,
 				41F1A1F0254B09020043FCF3 /* XCRemoteSwiftPackageReference "IDZSwiftCommonCrypto" */,
@@ -3797,6 +3833,7 @@
 				9FE8188D2805BCE40089A41E /* XCRemoteSwiftPackageReference "purchases-ios" */,
 				8A495CC42CC8589F001B4244 /* XCRemoteSwiftPackageReference "jellyfin-sdk-swift" */,
 				63AE44712E6161B60088668F /* XCRemoteSwiftPackageReference "DirectoryWatcher" */,
+				8A7F9A402E9C1100A1B2C6 /* XCRemoteSwiftPackageReference "FluidAudio" */,
 			);
 			productRefGroup = 418B6CF91D2707F800F974FB /* Products */;
 			projectDirPath = "";
@@ -4330,6 +4367,13 @@
 				63C48D3E2E3E7F9E005FBB96 /* LoginViewModel.swift in Sources */,
 				41B30A33230232D200025D69 /* CarPlayManager.swift in Sources */,
 				8A7F9A303B2E9C1100A1B2C3 /* BookmarkTranscriptionService.swift in Sources */,
+				8A7F9A3B2E9C1100A1B2C5 /* PlaybackTranscriptStore.swift in Sources */,
+				8A7F9A442E9C1100A1B2C7 /* TranscriptEngine.swift in Sources */,
+				8A7F9A462E9C1100A1B2C7 /* AppleSpeechTranscriptEngine.swift in Sources */,
+				8A7F9A482E9C1100A1B2C7 /* ParakeetTranscriptEngine.swift in Sources */,
+				8A7F9A4A2E9C1100A1B2C7 /* TranscriptEngineFactory.swift in Sources */,
+				8A7F9A4C2E9C1100A1B2C7 /* LiveTranscriptController.swift in Sources */,
+				8A7F9A4E2E9C1100A1B2C7 /* ChapterPreviewTranscriptionService.swift in Sources */,
 				637043502E2C0491005353D1 /* SettingsCreditsSectionView.swift in Sources */,
 				63C48D422E3E8189005FBB96 /* AccountDeleteSectionView.swift in Sources */,
 				631C75C72AB92BE20013E7E5 /* BPCoordinatorPresentationFlow.swift in Sources */,
@@ -4358,6 +4402,7 @@
 				634BA54C2C0C21AF0015314D /* SecondOnboardingCoordinator.swift in Sources */,
 				631908AE2E369EDC009249C1 /* BoostVolumeSectionView.swift in Sources */,
 				63C6C2E62B5029BC00FFE0D8 /* SettingsAutolockView.swift in Sources */,
+				8A7F9A512E9C1100A1B2C9 /* SettingsTranscriptView.swift in Sources */,
 				4124122826D19A8700B099DB /* StorageViewModel.swift in Sources */,
 				4158387926EB8D8800F4A12B /* LoadingViewController.swift in Sources */,
 				6356F9D02ACB01C700B7A027 /* PausePlaybackIntent.swift in Sources */,
@@ -4395,6 +4440,7 @@
 				41DA44BD26FAEC4F00F3A05D /* BookActivityItemProvider.swift in Sources */,
 				62793611272CBE910097837D /* ImportFileItem.swift in Sources */,
 				631908A82E3697DC009249C1 /* ListOptionsSectionView.swift in Sources */,
+				8A7F9A4A2E9C1100A1B2C8 /* TranscriptEngineSectionView.swift in Sources */,
 				4138CE1C26E5B42F0014F11E /* BookmarksViewModel.swift in Sources */,
 				8A9D0D2C2CCFBEEE007A924D /* JellyfinLibraryItemImageView.swift in Sources */,
 				6319089F2E33C7D0009249C1 /* SettingsTipView.swift in Sources */,
@@ -6285,6 +6331,14 @@
 				minimumVersion = 2.8.6;
 			};
 		};
+		8A7F9A402E9C1100A1B2C6 /* XCRemoteSwiftPackageReference "FluidAudio" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/FluidInference/FluidAudio.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.9;
+			};
+		};
 		8A495CC42CC8589F001B4244 /* XCRemoteSwiftPackageReference "jellyfin-sdk-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jellyfin/jellyfin-sdk-swift.git";
@@ -6363,6 +6417,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9FE8188D2805BCE40089A41E /* XCRemoteSwiftPackageReference "purchases-ios" */;
 			productName = RevenueCat;
+		};
+		8A7F9A412E9C1100A1B2C6 /* FluidAudio */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A7F9A402E9C1100A1B2C6 /* XCRemoteSwiftPackageReference "FluidAudio" */;
+			productName = FluidAudio;
 		};
 /* End XCSwiftPackageProductDependency section */
 
