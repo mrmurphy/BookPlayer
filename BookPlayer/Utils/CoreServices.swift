@@ -20,4 +20,5 @@ struct CoreServices {
   let playerManager: PlayerManager
   let syncService: SyncService
   let watchService: PhoneWatchConnectivityService
+  let transcriptStore: PlaybackTranscriptStore
 }

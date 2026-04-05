@@ -526,7 +526,12 @@ extension AppDelegate {
       let accountService = makeAccountService(dataManager: dataManager)
       let audioMetadataService = makeAudioMetadataService()
       let libraryService = makeLibraryService(dataManager: dataManager, audioMetadataService: audioMetadataService)
-      let bookmarkTranscriptionService = BookmarkTranscriptionService(dataManager: dataManager)
+      let transcriptStore = PlaybackTranscriptStore()
+      let bookmarkTranscriptionService = BookmarkTranscriptionService(
+        dataManager: dataManager,
+        store: transcriptStore,
+        engineFactory: { TranscriptEngineFactory.makeEngine() }
+      )
       let syncService = makeSyncService(accountService: accountService, libraryService: libraryService)
       let playbackService = makePlaybackService(libraryService: libraryService)
       let playerManager = PlayerManager(
@@ -560,7 +565,8 @@ extension AppDelegate {
         playerLoaderService: playerLoaderService,
         playerManager: playerManager,
         syncService: syncService,
-        watchService: watchService
+        watchService: watchService,
+        transcriptStore: transcriptStore
       )
 
       self.coreServices = coreServices

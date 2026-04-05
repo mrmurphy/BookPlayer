@@ -31,14 +31,29 @@ final class PlayerViewModelTests: XCTestCase {
     func cancelTranscription(for bookmark: SimpleBookmark) {}
   }
 
+  private final class MockLiveTranscriptPlaybackProvider: LiveTranscriptPlaybackProvider {
+    var currentItem: PlayableItem? { nil }
+    func currentItemPublisher() -> AnyPublisher<PlayableItem?, Never> { Just(nil).eraseToAnyPublisher() }
+    func isPlayingPublisher() -> AnyPublisher<Bool, Never> { Just(false).eraseToAnyPublisher() }
+    func playbackPositionDidUpdatePublisher() -> AnyPublisher<Void, Never> {
+      Empty(completeImmediately: false).eraseToAnyPublisher()
+    }
+  }
+
   var sut: PlayerViewModel!
 
   override func setUpWithError() throws {
+    let liveController = LiveTranscriptController(
+      provider: MockLiveTranscriptPlaybackProvider(),
+      store: PlaybackTranscriptStore(),
+      engineFactory: { AppleSpeechTranscriptEngine() }
+    )
     sut = PlayerViewModel(
       playerManager: PlayerManagerProtocolMock(),
       libraryService: LibraryServiceProtocolMock(),
       syncService: SyncServiceProtocolMock(),
-      bookmarkTranscriptionService: BookmarkTranscriptionServiceMock()
+      bookmarkTranscriptionService: BookmarkTranscriptionServiceMock(),
+      liveTranscriptController: liveController
     )
   }
 

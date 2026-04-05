@@ -43,6 +43,8 @@ class PlayerViewController: UIViewController, MVVMControllerProtocol, Storyboard
   @IBOutlet weak var containerPlayerControlsStackView: UIStackView!
   @IBOutlet weak var containerChapterControlsStackView: UIStackView!
   @IBOutlet weak var containerProgressControlsStackView: UIStackView!
+  private var liveTranscriptContainerView: UIView!
+  private var liveTranscriptLabel: UILabel!
   private var themedStatusBarStyle: UIStatusBarStyle?
   private var panGestureRecognizer: UIPanGestureRecognizer!
   private let dismissThreshold: CGFloat = 44.0 * UIScreen.main.nativeScale
@@ -87,10 +89,89 @@ class PlayerViewController: UIViewController, MVVMControllerProtocol, Storyboard
     bindTimerObserver()
 
     self.containerItemStackView.setCustomSpacing(26, after: self.artworkControl)
+    setupLiveTranscriptView()
     toggleArtwork(for: traitCollection)
 
     self.currentTimeLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .semibold)
 
+  }
+
+  private func setupLiveTranscriptView() {
+    let container = UIView()
+    container.translatesAutoresizingMaskIntoConstraints = false
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.numberOfLines = 3
+    label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+    label.textColor = UIColor.label
+    label.textAlignment = .natural
+    label.accessibilityLabel = "player_live_transcript".localized
+    container.addSubview(label)
+    NSLayoutConstraint.activate([
+      label.topAnchor.constraint(equalTo: container.topAnchor),
+      label.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+      label.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+      label.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+      container.heightAnchor.constraint(greaterThanOrEqualToConstant: 0),
+    ])
+    container.isHidden = true
+    if containerItemStackView.arrangedSubviews.count >= 1 {
+      containerItemStackView.insertArrangedSubview(container, at: 1)
+    } else {
+      containerItemStackView.addArrangedSubview(container)
+    }
+    liveTranscriptContainerView = container
+    liveTranscriptLabel = label
+
+    let live = viewModel.liveTranscript
+    Publishers.CombineLatest3(
+      live.$liveTranscriptText,
+      live.$transcriptRuns,
+      live.$currentRunIndex
+    )
+    .receive(on: DispatchQueue.main)
+    .sink { [weak self] text, runs, currentIndex in
+      guard let self else { return }
+      if runs.isEmpty {
+        self.liveTranscriptLabel.text = text
+        self.liveTranscriptLabel.attributedText = nil
+        self.liveTranscriptContainerView.isHidden = text.isEmpty
+      } else {
+        self.liveTranscriptLabel.attributedText = Self.attributedString(
+          for: runs,
+          currentRunIndex: currentIndex,
+          baseColor: UIColor.label
+        )
+        self.liveTranscriptLabel.text = nil
+        self.liveTranscriptContainerView.isHidden = false
+      }
+    }
+    .store(in: &disposeBag)
+  }
+
+  private static func attributedString(
+    for runs: [TranscriptSegmentLookup],
+    currentRunIndex: Int?,
+    baseColor: UIColor
+  ) -> NSAttributedString {
+    let font = UIFont.systemFont(ofSize: 14, weight: .regular)
+    let mutable = NSMutableAttributedString()
+    for (index, run) in runs.enumerated() {
+      let alpha: CGFloat = {
+        guard let curr = currentRunIndex else { return 0.35 }
+        if index == curr { return 1.0 }
+        if index == curr - 1 || index == curr + 1 { return 0.6 }
+        return 0.35
+      }()
+      mutable.append(NSAttributedString(
+        string: run.text,
+        attributes: [.font: font, .foregroundColor: baseColor.withAlphaComponent(alpha)]
+      ))
+      if index < runs.count - 1 {
+        mutable.append(NSAttributedString(string: " ", attributes: [.font: font, .foregroundColor: baseColor.withAlphaComponent(0.35)]))
+      }
+    }
+    return mutable
   }
 
   override func willTransition(

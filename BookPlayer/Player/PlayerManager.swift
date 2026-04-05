@@ -1302,3 +1302,12 @@ extension PlayerManager {
     }
   }
 }
+
+// MARK: - LiveTranscriptPlaybackProvider
+extension PlayerManager {
+  func playbackPositionDidUpdatePublisher() -> AnyPublisher<Void, Never> {
+    NotificationCenter.default.publisher(for: .bookPlaying)
+      .map { _ in () }
+      .eraseToAnyPublisher()
+  }
+}

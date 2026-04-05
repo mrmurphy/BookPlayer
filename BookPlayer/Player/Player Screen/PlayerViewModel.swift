@@ -29,6 +29,7 @@ class PlayerViewModel: ViewModelProtocol {
   private let libraryService: LibraryServiceProtocol
   private let syncService: SyncServiceProtocol
   private let bookmarkTranscriptionService: BookmarkTranscriptionServiceProtocol
+  private let liveTranscriptController: LiveTranscriptController
   private var chapterBeforeSliderValueChange: PlayableChapter?
   private let sharedDefaults: UserDefaults
   private var prefersChapterContext: Bool
@@ -49,16 +50,23 @@ class PlayerViewModel: ViewModelProtocol {
     playerManager: PlayerManagerProtocol,
     libraryService: LibraryServiceProtocol,
     syncService: SyncServiceProtocol,
-    bookmarkTranscriptionService: BookmarkTranscriptionServiceProtocol
+    bookmarkTranscriptionService: BookmarkTranscriptionServiceProtocol,
+    liveTranscriptController: LiveTranscriptController
   ) {
     self.playerManager = playerManager
     self.libraryService = libraryService
     self.syncService = syncService
     self.bookmarkTranscriptionService = bookmarkTranscriptionService
+    self.liveTranscriptController = liveTranscriptController
     let sharedDefaults = UserDefaults.sharedDefaults
     self.prefersChapterContext = sharedDefaults.bool(forKey: Constants.UserDefaults.chapterContextEnabled)
     self.prefersRemainingTime = sharedDefaults.bool(forKey: Constants.UserDefaults.remainingTimeEnabled)
     self.sharedDefaults = sharedDefaults
+  }
+
+  /// Source of live transcript text for the now-playing segment. Bind UI to `liveTranscriptController.liveTranscriptText` or its publisher.
+  var liveTranscript: LiveTranscriptController {
+    liveTranscriptController
   }
 
   private func sendEvent(_ event: PlayerViewModel.Events) {

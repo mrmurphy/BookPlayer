@@ -710,6 +710,9 @@
 		9F4A33E3292B0C710034CD4C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F4A33E1292B0C710034CD4C /* MainInterface.storyboard */; };
 		9F4A33E7292B0C710034CD4C /* BookPlayerShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9F4A33DD292B0C700034CD4C /* BookPlayerShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F5011F72A620D140075FEBA /* PlayerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5011F62A620D140075FEBA /* PlayerViewModelTests.swift */; };
+		8A7F9A532E9C1100A1B2D1 /* LiveTranscriptRunTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A522E9C1100A1B2D0 /* LiveTranscriptRunTests.swift */; };
+		8A7F9A572E9C1200A1B2D5 /* LiveTranscriptGenerationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A562E9C1200A1B2D4 /* LiveTranscriptGenerationTests.swift */; };
+		8A7F9A552E9C1100A1B2D3 /* MockPlaybackTranscriptStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A542E9C1100A1B2D2 /* MockPlaybackTranscriptStore.swift */; };
 		9F5011F92A6580800075FEBA /* ShakeMotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5011F82A6580800075FEBA /* ShakeMotionService.swift */; };
 		9F56C84D287B734C00EA9751 /* BPLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F56C84C287B734C00EA9751 /* BPLogger.swift */; };
 		9F56C84E287B734C00EA9751 /* BPLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F56C84C287B734C00EA9751 /* BPLogger.swift */; };
@@ -1629,6 +1632,9 @@
 		9F5011F32A62027C0075FEBA /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = nb; path = nb.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		9F5011F42A62027C0075FEBA /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9F5011F62A620D140075FEBA /* PlayerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModelTests.swift; sourceTree = "<group>"; };
+		8A7F9A522E9C1100A1B2D0 /* LiveTranscriptRunTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player/LiveTranscriptRunTests.swift"; sourceTree = "<group>"; };
+		8A7F9A562E9C1200A1B2D4 /* LiveTranscriptGenerationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player/LiveTranscriptGenerationTests.swift"; sourceTree = "<group>"; };
+		8A7F9A542E9C1100A1B2D2 /* MockPlaybackTranscriptStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPlaybackTranscriptStore.swift; sourceTree = "<group>"; };
 		9F5011F82A6580800075FEBA /* ShakeMotionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeMotionService.swift; sourceTree = "<group>"; };
 		9F56C84C287B734C00EA9751 /* BPLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPLogger.swift; sourceTree = "<group>"; };
 		9F5F12DA2976E8CD00F061A0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -2162,6 +2168,8 @@
 				4163E312214AC43000072AA2 /* ImportOperationTests.swift */,
 				41C3CF7D20AEA5E5007C3EF4 /* DataManagerTests.swift */,
 				9F5011F62A620D140075FEBA /* PlayerViewModelTests.swift */,
+				8A7F9A522E9C1100A1B2D0 /* LiveTranscriptRunTests.swift */,
+				8A7F9A562E9C1200A1B2D4 /* LiveTranscriptGenerationTests.swift */,
 				9F8A9A5D27AC3F8C0093AA1C /* PlayableItemTests.swift */,
 				9FB7C48C2835A2C1003B917E /* PlayerManagerTests.swift */,
 				6279361D272D0CF50097837D /* Coordinators */,
@@ -2491,6 +2499,7 @@
 				9FC1E4622814F80000522FA8 /* AccountServiceMock.swift */,
 				9FC1E46828150ECC00522FA8 /* NetworkClientMock.swift */,
 				9F1C30FB2A2E593300D5BC81 /* PlayableItemMock.swift */,
+				8A7F9A542E9C1100A1B2D2 /* MockPlaybackTranscriptStore.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -4629,6 +4638,9 @@
 				6906A553217211C600A9E0B2 /* StubFactory.swift in Sources */,
 				6906A55021720FDF00A9E0B2 /* BookSortServiceTest.swift in Sources */,
 				9F5011F72A620D140075FEBA /* PlayerViewModelTests.swift in Sources */,
+				8A7F9A532E9C1100A1B2D1 /* LiveTranscriptRunTests.swift in Sources */,
+				8A7F9A572E9C1200A1B2D5 /* LiveTranscriptGenerationTests.swift in Sources */,
+				8A7F9A552E9C1100A1B2D3 /* MockPlaybackTranscriptStore.swift in Sources */,
 				9FC1E4632814F80000522FA8 /* AccountServiceMock.swift in Sources */,
 				9FC1E4672815091A00522FA8 /* AccountServiceTests.swift in Sources */,
 				9FC1E4772815F97E00522FA8 /* KeychainServiceTests.swift in Sources */,

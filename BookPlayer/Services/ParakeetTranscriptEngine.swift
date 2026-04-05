@@ -20,12 +20,35 @@ public final class ParakeetTranscriptEngine: TranscriptEngineProtocol, @unchecke
   public init() {}
 
   public func transcribe(segment: TranscriptSegmentSpec) async throws -> String {
+    if let withRuns = try await transcribeWithRuns(segment: segment) {
+      return withRuns.fullText
+    }
+    return ""
+  }
+
+  public func transcribeWithRuns(segment: TranscriptSegmentSpec) async throws -> TranscriptionWithRuns? {
     let audioURL = try await exportSegment(segment)
     defer { try? FileManager.default.removeItem(at: audioURL) }
 
     let manager = try await getOrCreateAsrManager()
     let result = try await manager.transcribe(audioURL, source: .system)
-    return result.text
+    let runs = Self.runs(from: result)
+    return TranscriptionWithRuns(fullText: result.text, runs: runs)
+  }
+
+  private static func runs(from result: ASRResult) -> [TranscriptRun] {
+    guard let timings = result.tokenTimings, !timings.isEmpty else {
+      if result.text.isEmpty { return [] }
+      return [TranscriptRun(startInSegment: 0, duration: result.duration, text: result.text)]
+    }
+    return timings.map { t in
+      let text = t.token.replacingOccurrences(of: "▁", with: " ")
+      return TranscriptRun(
+        startInSegment: t.startTime,
+        duration: t.endTime - t.startTime,
+        text: text
+      )
+    }
   }
 
   private func asrVersion(from version: ParakeetModelVersion) -> AsrModelVersion {

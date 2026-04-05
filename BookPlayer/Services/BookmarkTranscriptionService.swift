@@ -5,7 +5,6 @@
 //  Created by BookPlayer.
 //
 
-import AVFoundation
 @preconcurrency import BookPlayerKit
 import Combine
 import CoreData
@@ -25,10 +24,19 @@ protocol BookmarkTranscriptionServiceProtocol: AnyObject {
   func cancelTranscription(for bookmark: SimpleBookmark)
 }
 
-final class BookmarkTranscriptionService: BPLogger, BookmarkTranscriptionServiceProtocol {
+final class BookmarkTranscriptionService: BPLogger, BookmarkTranscriptionServiceProtocol, @unchecked Sendable {
   private struct TranscriptSegment {
     let fileURL: URL
     let startTime: TimeInterval
+    let duration: TimeInterval
+  }
+
+  /// Result of segment range computation: segment for engine + identity for store.
+  private struct SegmentInfo {
+    let segment: TranscriptSegment
+    let relativePath: String
+    let chapterIndex: Int16
+    let startInChapter: TimeInterval
     let duration: TimeInterval
   }
 
@@ -39,6 +47,8 @@ final class BookmarkTranscriptionService: BPLogger, BookmarkTranscriptionService
   }
 
   private let dataManager: DataManager
+  private let store: PlaybackTranscriptStoreProtocol
+  private let engineFactory: () -> TranscriptEngineProtocol
   private var activeTasks: [String: Task<Void, Never>] = [:]
   private let taskLock = NSLock()
   private let updatesSubject = PassthroughSubject<String, Never>()
@@ -47,8 +57,14 @@ final class BookmarkTranscriptionService: BPLogger, BookmarkTranscriptionService
     updatesSubject.eraseToAnyPublisher()
   }
 
-  init(dataManager: DataManager) {
+  init(
+    dataManager: DataManager,
+    store: PlaybackTranscriptStoreProtocol,
+    engineFactory: @escaping () -> TranscriptEngineProtocol
+  ) {
     self.dataManager = dataManager
+    self.store = store
+    self.engineFactory = engineFactory
   }
 
   func startTranscription(for bookmark: SimpleBookmark, in item: PlayableItem) {
@@ -111,12 +127,7 @@ final class BookmarkTranscriptionService: BPLogger, BookmarkTranscriptionService
       do {
         guard !Task.isCancelled else { return }
 
-        let authStatus = await self.ensureSpeechAuthorization()
-        guard authStatus == .authorized else {
-          throw BookPlayerError.runtimeError("Speech recognition not authorized.")
-        }
-
-        guard let segment = self.makeSegment(
+        guard let info = self.makeSegmentInfo(
           for: bookmark,
           in: item,
           startOffset: clampedStart,
@@ -125,8 +136,70 @@ final class BookmarkTranscriptionService: BPLogger, BookmarkTranscriptionService
           throw BookPlayerError.runtimeError("Could not build transcript segment.")
         }
 
-        let transcript = try await self.transcribe(segment: segment)
+        let rangeStart = info.startInChapter
+        let rangeEnd = info.startInChapter + info.duration
+
+        if let cached = self.cachedTranscript(
+          relativePath: info.relativePath,
+          chapterIndex: info.chapterIndex,
+          rangeStart: rangeStart,
+          rangeEnd: rangeEnd
+        ) {
+          guard !Task.isCancelled else { return }
+          await self.updateBookmark(
+            bookmark,
+            startOffset: nil,
+            endOffset: nil,
+            transcriptUpdate: .set(cached),
+            state: .ready
+          )
+          self.publishUpdate(for: bookmark.relativePath)
+          return
+        }
+
+        let authStatus = await self.ensureSpeechAuthorization()
+        guard authStatus == .authorized else {
+          throw BookPlayerError.runtimeError("Speech recognition not authorized.")
+        }
+
+        let spec = TranscriptSegmentSpec(
+          fileURL: info.segment.fileURL,
+          startTime: info.segment.startTime,
+          duration: info.segment.duration
+        )
+        let transcript: String
+        do {
+          let engine = self.engineFactory()
+          transcript = try await engine.transcribe(segment: spec)
+        } catch {
+          if TranscriptEngineChoice.current == .parakeet {
+            do {
+              transcript = try await AppleSpeechTranscriptEngine().transcribe(segment: spec)
+            } catch let fallbackErr {
+              Self.logger.error("Bookmark transcription (Parakeet fallback) failed: \(fallbackErr.localizedDescription)")
+              await self.updateBookmark(
+                bookmark,
+                startOffset: nil,
+                endOffset: nil,
+                transcriptUpdate: .clear,
+                state: .failed
+              )
+              self.publishUpdate(for: bookmark.relativePath)
+              return
+            }
+          } else {
+            throw error
+          }
+        }
         guard !Task.isCancelled else { return }
+
+        try? self.store.store(
+          relativePath: info.relativePath,
+          chapterIndex: info.chapterIndex,
+          startInChapter: info.startInChapter,
+          duration: info.duration,
+          text: transcript
+        )
 
         await self.updateBookmark(
           bookmark,
@@ -153,12 +226,35 @@ final class BookmarkTranscriptionService: BPLogger, BookmarkTranscriptionService
     setActiveTask(task, for: key)
   }
 
-  private func makeSegment(
+  /// Returns merged transcript if the store has segments that fully cover [rangeStart, rangeEnd].
+  private func cachedTranscript(
+    relativePath: String,
+    chapterIndex: Int16,
+    rangeStart: TimeInterval,
+    rangeEnd: TimeInterval
+  ) -> String? {
+    guard let lookups = try? store.segments(
+      relativePath: relativePath,
+      chapterIndex: chapterIndex,
+      overlappingRangeStart: rangeStart,
+      rangeEnd: rangeEnd
+    ), !lookups.isEmpty else { return nil }
+
+    let sorted = lookups.sorted { $0.startInChapter < $1.startInChapter }
+    let first = sorted.first!
+    let last = sorted.last!
+    if first.startInChapter > rangeStart || (last.startInChapter + last.duration) < rangeEnd {
+      return nil
+    }
+    return sorted.map(\.text).joined(separator: " ")
+  }
+
+  private func makeSegmentInfo(
     for bookmark: SimpleBookmark,
     in item: PlayableItem,
     startOffset: TimeInterval,
     endOffset: TimeInterval
-  ) -> TranscriptSegment? {
+  ) -> SegmentInfo? {
     guard let chapter = item.getChapter(at: bookmark.time) else { return nil }
 
     let startGlobal = max(bookmark.time - startOffset, chapter.start)
@@ -175,101 +271,17 @@ final class BookmarkTranscriptionService: BPLogger, BookmarkTranscriptionService
     guard duration > 0 else { return nil }
     guard FileManager.default.fileExists(atPath: chapter.fileURL.path) else { return nil }
 
-    return TranscriptSegment(
-      fileURL: chapter.fileURL,
-      startTime: startTime,
+    return SegmentInfo(
+      segment: TranscriptSegment(
+        fileURL: chapter.fileURL,
+        startTime: startTime,
+        duration: duration
+      ),
+      relativePath: item.relativePath,
+      chapterIndex: chapter.index,
+      startInChapter: startTime,
       duration: duration
     )
-  }
-
-  private func transcribe(segment: TranscriptSegment) async throws -> String {
-    let audioURL = try await exportSegment(segment)
-    defer { try? FileManager.default.removeItem(at: audioURL) }
-
-    guard let recognizer = SFSpeechRecognizer(locale: Locale.current) else {
-      throw BookPlayerError.runtimeError("Speech recognizer is unavailable.")
-    }
-    guard recognizer.isAvailable else {
-      throw BookPlayerError.runtimeError("Speech recognizer is unavailable.")
-    }
-
-    if #available(iOS 13.0, *) {
-      guard recognizer.supportsOnDeviceRecognition else {
-        throw BookPlayerError.runtimeError("On-device speech recognition not supported.")
-      }
-    }
-
-    let request = SFSpeechURLRecognitionRequest(url: audioURL)
-    request.shouldReportPartialResults = true
-    if #available(iOS 13.0, *) {
-      request.requiresOnDeviceRecognition = true
-    }
-
-    return try await withCheckedThrowingContinuation { continuation in
-      var resumed = false
-      var lastTranscription: String?
-      _ = recognizer.recognitionTask(with: request) { result, error in
-        if let result {
-          let text = result.bestTranscription.formattedString
-          if !text.isEmpty {
-            lastTranscription = text
-          }
-          if result.isFinal, !resumed {
-            resumed = true
-            continuation.resume(returning: text.isEmpty ? (lastTranscription ?? "") : text)
-            return
-          }
-        }
-
-        if let error, !resumed {
-          resumed = true
-          if let last = lastTranscription, !last.isEmpty {
-            continuation.resume(returning: last)
-          } else {
-            continuation.resume(throwing: error)
-          }
-        }
-      }
-    }
-  }
-
-  private func exportSegment(_ segment: TranscriptSegment) async throws -> URL {
-    let asset = AVURLAsset(url: segment.fileURL)
-    guard let exportSession = AVAssetExportSession(
-      asset: asset,
-      presetName: AVAssetExportPresetAppleM4A
-    ) else {
-      throw BookPlayerError.runtimeError("Unable to create export session.")
-    }
-
-    let outputURL = FileManager.default.temporaryDirectory
-      .appendingPathComponent("bookmark-transcript-\(UUID().uuidString).m4a")
-
-    if FileManager.default.fileExists(atPath: outputURL.path) {
-      try? FileManager.default.removeItem(at: outputURL)
-    }
-
-    exportSession.outputURL = outputURL
-    exportSession.outputFileType = .m4a
-    exportSession.timeRange = CMTimeRange(
-      start: CMTime(seconds: segment.startTime, preferredTimescale: CMTimeScale(NSEC_PER_SEC)),
-      duration: CMTime(seconds: segment.duration, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
-    )
-
-    try await withCheckedThrowingContinuation { continuation in
-      exportSession.exportAsynchronously {
-        switch exportSession.status {
-        case .completed:
-          continuation.resume()
-        case .failed, .cancelled:
-          continuation.resume(throwing: exportSession.error ?? BookPlayerError.runtimeError("Export failed."))
-        default:
-          continuation.resume(throwing: BookPlayerError.runtimeError("Export failed."))
-        }
-      }
-    }
-
-    return outputURL
   }
 
   private func updateBookmark(

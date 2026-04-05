@@ -30,6 +30,7 @@ class MainCoordinator: NSObject {
   let audiobookshelfConnectionService: AudiobookShelfConnectionService
   let hardcoverService: HardcoverService
   let bookmarkTranscriptionService: BookmarkTranscriptionService
+  let transcriptStore: PlaybackTranscriptStore
 
   let playerState = PlayerState()
 
@@ -68,6 +69,7 @@ class MainCoordinator: NSObject {
     self.audiobookshelfConnectionService = audiobookshelfService
 
     self.hardcoverService = coreServices.hardcoverService
+    self.transcriptStore = coreServices.transcriptStore
 
     ThemeManager.shared.libraryService = libraryService
 
@@ -200,7 +202,8 @@ class MainCoordinator: NSObject {
       playerManager: self.playerManager,
       libraryService: self.libraryService,
       syncService: self.syncService,
-      bookmarkTranscriptionService: self.bookmarkTranscriptionService
+      bookmarkTranscriptionService: self.bookmarkTranscriptionService,
+      transcriptStore: self.transcriptStore
     )
     playerCoordinator.start()
   }

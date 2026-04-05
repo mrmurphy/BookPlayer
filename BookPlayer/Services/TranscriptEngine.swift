@@ -21,8 +21,42 @@ public struct TranscriptSegmentSpec: Sendable {
   }
 }
 
+/// A single timestamped run of text. Times are relative to the start of the transcribed segment.
+public struct TranscriptRun: Sendable {
+  public let startInSegment: TimeInterval
+  public let duration: TimeInterval
+  public let text: String
+
+  public init(startInSegment: TimeInterval, duration: TimeInterval, text: String) {
+    self.startInSegment = startInSegment
+    self.duration = duration
+    self.text = text
+  }
+}
+
+/// Transcription result that includes per-run timings for karaoke-style sync.
+public struct TranscriptionWithRuns: Sendable {
+  public let fullText: String
+  public let runs: [TranscriptRun]
+
+  public init(fullText: String, runs: [TranscriptRun]) {
+    self.fullText = fullText
+    self.runs = runs
+  }
+}
+
 public protocol TranscriptEngineProtocol: Sendable {
   func transcribe(segment: TranscriptSegmentSpec) async throws -> String
+
+  /// When implemented, returns runs with timings relative to the segment. Caller adds segment.startTime for chapter time.
+  /// Default returns nil; callers fall back to transcribe(segment:) and treat the whole segment as one run.
+  func transcribeWithRuns(segment: TranscriptSegmentSpec) async throws -> TranscriptionWithRuns?
+}
+
+public extension TranscriptEngineProtocol {
+  func transcribeWithRuns(segment: TranscriptSegmentSpec) async throws -> TranscriptionWithRuns? {
+    nil
+  }
 }
 
 /// User-facing transcript engine choice. Raw value is stored in UserDefaults.
