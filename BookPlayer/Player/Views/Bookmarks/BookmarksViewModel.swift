@@ -84,6 +84,8 @@ final class BookmarksViewModel: BookmarksView.Model {
     syncService.scheduleDeleteBookmark(bookmark)
   }
 
+  override var libraryServiceForQuotes: LibraryServiceProtocol? { libraryService }
+
   func syncBookmarks(for relativePath: String) {
     Task { [weak self] in
       guard

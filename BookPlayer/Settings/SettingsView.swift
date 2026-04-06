@@ -93,6 +93,8 @@ struct SettingsView: View {
           view = AnyView(SettingsAutoplayView())
         case .autolock:
           view = AnyView(SettingsAutolockView())
+        case .bookmarkQuoteDefaults:
+          view = AnyView(BookmarkQuoteDefaultsSettingsView())
         case .storage:
           view = AnyView(
             StorageView(

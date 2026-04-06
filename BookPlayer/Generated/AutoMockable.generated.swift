@@ -885,6 +885,67 @@ class LibraryServiceProtocolMock: LibraryServiceProtocol {
         deleteBookmarkReceivedInvocations.append(bookmark)
         deleteBookmarkClosure?(bookmark)
     }
+    //MARK: - saveQuote
+
+    var saveQuoteForRawCleanedSecondsBeforeSecondsAfterCallsCount = 0
+    var saveQuoteForRawCleanedSecondsBeforeSecondsAfterCalled: Bool {
+        return saveQuoteForRawCleanedSecondsBeforeSecondsAfterCallsCount > 0
+    }
+    var saveQuoteForRawCleanedSecondsBeforeSecondsAfterReceivedArguments: (bookmark: SimpleBookmark, raw: String, cleaned: String, secondsBefore: Double, secondsAfter: Double)?
+    var saveQuoteForRawCleanedSecondsBeforeSecondsAfterReceivedInvocations: [(bookmark: SimpleBookmark, raw: String, cleaned: String, secondsBefore: Double, secondsAfter: Double)] = []
+    var saveQuoteForRawCleanedSecondsBeforeSecondsAfterClosure: ((SimpleBookmark, String, String, Double, Double) throws -> Void)?
+    func saveQuote(for bookmark: SimpleBookmark, raw: String, cleaned: String, secondsBefore: Double, secondsAfter: Double) throws {
+        saveQuoteForRawCleanedSecondsBeforeSecondsAfterCallsCount += 1
+        saveQuoteForRawCleanedSecondsBeforeSecondsAfterReceivedArguments = (bookmark: bookmark, raw: raw, cleaned: cleaned, secondsBefore: secondsBefore, secondsAfter: secondsAfter)
+        saveQuoteForRawCleanedSecondsBeforeSecondsAfterReceivedInvocations.append((bookmark: bookmark, raw: raw, cleaned: cleaned, secondsBefore: secondsBefore, secondsAfter: secondsAfter))
+        try saveQuoteForRawCleanedSecondsBeforeSecondsAfterClosure?(bookmark, raw, cleaned, secondsBefore, secondsAfter)
+    }
+    //MARK: - loadQuoteSnapshot
+
+    var loadQuoteSnapshotForCallsCount = 0
+    var loadQuoteSnapshotForCalled: Bool {
+        return loadQuoteSnapshotForCallsCount > 0
+    }
+    var loadQuoteSnapshotForReceivedBookmark: SimpleBookmark?
+    var loadQuoteSnapshotForReceivedInvocations: [SimpleBookmark] = []
+    var loadQuoteSnapshotForReturnValue: BookmarkQuoteSnapshot = BookmarkQuoteSnapshot(
+        rawText: nil,
+        cleanedText: nil,
+        secondsBefore: nil,
+        secondsAfter: nil,
+        lastUpdated: nil
+    )
+    var loadQuoteSnapshotForClosure: ((SimpleBookmark) throws -> BookmarkQuoteSnapshot)?
+    func loadQuoteSnapshot(for bookmark: SimpleBookmark) throws -> BookmarkQuoteSnapshot {
+        loadQuoteSnapshotForCallsCount += 1
+        loadQuoteSnapshotForReceivedBookmark = bookmark
+        loadQuoteSnapshotForReceivedInvocations.append(bookmark)
+        if let loadQuoteSnapshotForClosure = loadQuoteSnapshotForClosure {
+            return try loadQuoteSnapshotForClosure(bookmark)
+        } else {
+            return loadQuoteSnapshotForReturnValue
+        }
+    }
+    //MARK: - fetchBookmarkIncludingQuoteFields
+
+    var fetchBookmarkIncludingQuoteFieldsCallsCount = 0
+    var fetchBookmarkIncludingQuoteFieldsCalled: Bool {
+        return fetchBookmarkIncludingQuoteFieldsCallsCount > 0
+    }
+    var fetchBookmarkIncludingQuoteFieldsReceivedBookmark: SimpleBookmark?
+    var fetchBookmarkIncludingQuoteFieldsReceivedInvocations: [SimpleBookmark] = []
+    var fetchBookmarkIncludingQuoteFieldsReturnValue: SimpleBookmark?
+    var fetchBookmarkIncludingQuoteFieldsClosure: ((SimpleBookmark) throws -> SimpleBookmark?)?
+    func fetchBookmarkIncludingQuoteFields(_ bookmark: SimpleBookmark) throws -> SimpleBookmark? {
+        fetchBookmarkIncludingQuoteFieldsCallsCount += 1
+        fetchBookmarkIncludingQuoteFieldsReceivedBookmark = bookmark
+        fetchBookmarkIncludingQuoteFieldsReceivedInvocations.append(bookmark)
+        if let fetchBookmarkIncludingQuoteFieldsClosure = fetchBookmarkIncludingQuoteFieldsClosure {
+            return try fetchBookmarkIncludingQuoteFieldsClosure(bookmark)
+        } else {
+            return fetchBookmarkIncludingQuoteFieldsReturnValue
+        }
+    }
     //MARK: - setHardcoverBook
 
     var setHardcoverBookForCallsCount = 0

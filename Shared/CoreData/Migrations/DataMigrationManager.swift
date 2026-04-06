@@ -65,9 +65,15 @@ public final class DataMigrationManager: BPLogger {
   ) throws {
     let migrationManager = NSMigrationManager(sourceModel: from, destinationModel: to)
 
-    let migrationMappingModel =
-      try? mappingModel
-      ?? NSMappingModel.inferredMappingModel(forSourceModel: from, destinationModel: to)
+    let migrationMappingModel: NSMappingModel
+    if let mappingModel {
+      migrationMappingModel = mappingModel
+    } else {
+      migrationMappingModel = try NSMappingModel.inferredMappingModel(
+        forSourceModel: from,
+        destinationModel: to
+      )
+    }
 
     let targetURL = storeURL.deletingLastPathComponent()
     let destinationName = storeURL.lastPathComponent + "~1"

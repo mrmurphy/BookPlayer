@@ -142,6 +142,17 @@ public protocol LibraryServiceProtocol: AnyObject {
   /// Delete a bookmark
   func deleteBookmark(_ bookmark: SimpleBookmark)
 
+  /// Persist AI quote fields on a user bookmark (local only; not synced).
+  func saveQuote(
+    for bookmark: SimpleBookmark,
+    raw: String,
+    cleaned: String,
+    secondsBefore: Double,
+    secondsAfter: Double
+  ) throws
+  /// Load stored quote snapshot for a bookmark.
+  func loadQuoteSnapshot(for bookmark: SimpleBookmark) throws -> BookmarkQuoteSnapshot
+
   /// HardcoverBook
   /// Set hardcover book for an item (nil to remove)
   func setHardcoverBook(_ hardcoverBook: SimpleHardcoverBook?, for relativePath: String) async
@@ -2373,6 +2384,55 @@ extension LibraryService {
     let item = getItemReference(with: bookmark.relativePath)
     item?.removeFromBookmarks(bookmarkReference)
     self.dataManager.delete(bookmarkReference)
+  }
+
+  public func loadQuoteSnapshot(for bookmark: SimpleBookmark) throws -> BookmarkQuoteSnapshot {
+    guard let ref = getBookmarkReferenceForQuote(from: bookmark) else {
+      throw BookmarkQuoteServiceError.bookmarkNotFound
+    }
+    let hasQuote = ref.quoteRawText != nil || ref.quoteCleanedText != nil
+    return BookmarkQuoteSnapshot(
+      rawText: ref.quoteRawText,
+      cleanedText: ref.quoteCleanedText,
+      secondsBefore: hasQuote ? ref.quoteSecondsBefore : nil,
+      secondsAfter: hasQuote ? ref.quoteSecondsAfter : nil,
+      lastUpdated: ref.quoteLastUpdatedAt
+    )
+  }
+
+  public func saveQuote(
+    for bookmark: SimpleBookmark,
+    raw: String,
+    cleaned: String,
+    secondsBefore: Double,
+    secondsAfter: Double
+  ) throws {
+    guard let ref = getBookmarkReferenceForQuote(from: bookmark) else {
+      throw BookmarkQuoteServiceError.bookmarkNotFound
+    }
+    ref.quoteRawText = raw
+    ref.quoteCleanedText = cleaned
+    ref.quoteSecondsBefore = secondsBefore
+    ref.quoteSecondsAfter = secondsAfter
+    ref.quoteLastUpdatedAt = Date()
+    dataManager.saveContext()
+  }
+
+  private func getBookmarkReferenceForQuote(from bookmark: SimpleBookmark) -> Bookmark? {
+    fetchBookmarkIncludingQuoteFields(from: bookmark, context: dataManager.getContext())
+  }
+
+  private func fetchBookmarkIncludingQuoteFields(from bookmark: SimpleBookmark, context: NSManagedObjectContext) -> Bookmark? {
+    let fetchRequest: NSFetchRequest<Bookmark> = Bookmark.fetchRequest()
+    fetchRequest.predicate = NSPredicate(
+      format: "%K == %@ && type == %d && time == %f",
+      #keyPath(Bookmark.item.relativePath),
+      bookmark.relativePath,
+      bookmark.type.rawValue,
+      bookmark.time
+    )
+    fetchRequest.fetchLimit = 1
+    return try? context.fetch(fetchRequest).first
   }
 }
 

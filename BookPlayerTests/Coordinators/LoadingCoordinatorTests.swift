@@ -18,6 +18,10 @@ class LoadingCoordinatorTests: XCTestCase {
   var presentingController: UINavigationController!
 
   override func setUp() {
+    super.setUp()
+    if AppServices.shared.setupCoreServicesTask == nil {
+      AppServices.shared.setupCoreServices()
+    }
     self.presentingController = MockNavigationController()
     self.loadingCoordinator = LoadingCoordinator(
       flow: .modalFlow(presentingController: self.presentingController)
@@ -26,9 +30,16 @@ class LoadingCoordinatorTests: XCTestCase {
   }
 
   @MainActor
-  func testFinishedLoadingSequence() async {
-    _ = await AppServices.shared.setupCoreServicesTask?.result
+  func testFinishedLoadingSequence() async throws {
+    try await AppServices.shared.awaitCoreServices()
+    XCTAssertNil(
+      AppServices.shared.errorCoreServicesSetup,
+      "Core Data / services setup failed: \(String(describing: AppServices.shared.errorCoreServicesSetup))"
+    )
     self.loadingCoordinator.didFinishLoadingSequence()
-    XCTAssertNotNil(self.loadingCoordinator.getMainCoordinator())
+    XCTAssertNotNil(
+      self.loadingCoordinator.getMainCoordinator(),
+      "MainCoordinator was not created; core services may be nil or didFinishLoadingSequence returned early"
+    )
   }
 }

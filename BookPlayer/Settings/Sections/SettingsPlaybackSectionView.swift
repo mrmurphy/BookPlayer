@@ -26,6 +26,10 @@ struct SettingsPlaybackSectionView: View {
         Text("settings_autlock_section_title")
           .bpFont(.body)
       }
+      NavigationLink(value: SettingsScreen.bookmarkQuoteDefaults) {
+        Text("settings_bookmark_quote_link_title")
+          .bpFont(.body)
+      }
     } header: {
       Text("settings_playback_title")
         .bpFont(.subheadline)

@@ -9,7 +9,7 @@
 import BookPlayerKit
 import UIKit
 
-class LoadingCoordinator: Coordinator, AlertPresenter {
+class LoadingCoordinator: Coordinator, AlertPresenter, BPLogger {
   let flow: BPCoordinatorPresentationFlow
   var mainCoordinator: MainCoordinator?
 
@@ -26,7 +26,10 @@ class LoadingCoordinator: Coordinator, AlertPresenter {
   }
 
   @MainActor func didFinishLoadingSequence() {
-    let coreServices = AppServices.shared.coreServices!
+    guard let coreServices = AppServices.shared.coreServices else {
+      Self.logger.error("didFinishLoadingSequence called before core services finished loading")
+      return
+    }
 
     let coordinator = MainCoordinator(
       navigationController: flow.navigationController,

@@ -233,6 +233,8 @@ class DataInitializerCoordinator: BPLogger {
 
     setupUserDefaultsPreferences(sharedDefaults: sharedDefaults)
 
+    registerBookmarkQuoteDefaultWindows(sharedDefaults: sharedDefaults)
+
     setupDefaultTheme(libraryService: libraryService)
 
     setupBlankAccount(dataManager: dataManager)
@@ -283,6 +285,15 @@ class DataInitializerCoordinator: BPLogger {
       )
       sharedDefaults.set(localRemainingTimeEnabled, forKey: remainingTimeEnabledKey)
       UserDefaults.standard.removeObject(forKey: remainingTimeEnabledKey)
+    }
+  }
+
+  private func registerBookmarkQuoteDefaultWindows(sharedDefaults: UserDefaults) {
+    if sharedDefaults.object(forKey: Constants.UserDefaults.bookmarkQuoteSecondsBeforeDefault) == nil {
+      sharedDefaults.set(20, forKey: Constants.UserDefaults.bookmarkQuoteSecondsBeforeDefault)
+    }
+    if sharedDefaults.object(forKey: Constants.UserDefaults.bookmarkQuoteSecondsAfterDefault) == nil {
+      sharedDefaults.set(30, forKey: Constants.UserDefaults.bookmarkQuoteSecondsAfterDefault)
     }
   }
 

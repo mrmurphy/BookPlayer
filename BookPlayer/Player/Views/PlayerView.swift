@@ -188,6 +188,16 @@ struct PlayerView: View {
         .environmentObject(theme)
       }
     }
+    .sheet(item: $viewModel.quoteSheetBookmark) { bookmark in
+      if let item = viewModel.playerManager.currentItem {
+        BookmarkQuoteView(
+          bookmark: bookmark,
+          playable: item,
+          libraryService: viewModel.libraryService
+        )
+        .environmentObject(theme)
+      }
+    }
     .fullScreenCover(isPresented: $viewModel.showButtonFreeScreen) {
       ButtonFreeView{
         ButtonFreeViewModel(

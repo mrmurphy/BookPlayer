@@ -88,6 +88,11 @@ public enum Constants {
 
     /// macOS text scaling
     public static let macOSTextScale = "userSettingsMacOSTextScale"
+
+    /// Default seconds of audio before a bookmark when generating a quote
+    public static let bookmarkQuoteSecondsBeforeDefault = "userSettingsBookmarkQuoteSecondsBefore"
+    /// Default seconds of audio after a bookmark when generating a quote
+    public static let bookmarkQuoteSecondsAfterDefault = "userSettingsBookmarkQuoteSecondsAfter"
   }
 
   public enum SmartRewind {

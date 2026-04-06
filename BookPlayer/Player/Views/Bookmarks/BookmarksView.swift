@@ -17,6 +17,7 @@ struct BookmarksView: View {
 
   @State private var showingNoteAlert: SimpleBookmark?
   @State private var bookmarkToDelete: SimpleBookmark?
+  @State private var quoteBookmark: SimpleBookmark?
   @State private var noteText: String = ""
 
   @Environment(\.dismiss) private var dismiss
@@ -53,7 +54,7 @@ struct BookmarksView: View {
         // User bookmarks section
         ThemedSection {
           ForEach(model.userBookmarks) { bookmark in
-            bookmarkRow(bookmark)
+            userBookmarkRow(bookmark)
               .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                 Button(role: .destructive) {
                   bookmarkToDelete = bookmark
@@ -139,7 +140,36 @@ struct BookmarksView: View {
       } message: { bookmark in
         Text(String(format: "delete_single_item_title".localized, TimeParser.formatTime(bookmark.time)))
       }
+      .sheet(item: $quoteBookmark) { bookmark in
+        if let library = model.libraryServiceForQuotes, let item = model.currentItem {
+          BookmarkQuoteView(
+            bookmark: bookmark,
+            playable: item,
+            libraryService: library
+          )
+          .environmentObject(theme)
+        }
+      }
     }
+  }
+
+  @ViewBuilder
+  private func userBookmarkRow(_ bookmark: SimpleBookmark) -> some View {
+    Button {
+      model.handleBookmarkSelected(bookmark)
+      dismiss()
+    } label: {
+      bookmarkRowLabel(bookmark)
+    }
+    .contextMenu {
+      Button {
+        quoteBookmark = bookmark
+      } label: {
+        Label("bookmark_quote_action_title".localized, systemImage: "quote.bubble")
+      }
+      .disabled(model.libraryServiceForQuotes == nil || model.currentItem == nil)
+    }
+    .listRowBackground(theme.secondarySystemBackgroundColor)
   }
 
   @ViewBuilder
@@ -148,27 +178,32 @@ struct BookmarksView: View {
       model.handleBookmarkSelected(bookmark)
       dismiss()
     } label: {
-      HStack(spacing: Spacing.S2) {
-        Text(TimeParser.formatTime(bookmark.time))
-          .frame(minWidth: 61)
-          .bpFont(.caption)
-          .foregroundStyle(theme.secondaryColor)
-
-        if let note = bookmark.note {
-          Text(note)
-            .bpFont(.body)
-            .foregroundStyle(theme.primaryColor)
-        }
-
-        Spacer()
-
-        if let imageName = bookmark.getImageNameForType() {
-          Image(systemName: imageName)
-            .foregroundStyle(theme.secondaryColor)
-        }
-      }
+      bookmarkRowLabel(bookmark)
     }
     .listRowBackground(theme.secondarySystemBackgroundColor)
+  }
+
+  @ViewBuilder
+  private func bookmarkRowLabel(_ bookmark: SimpleBookmark) -> some View {
+    HStack(spacing: Spacing.S2) {
+      Text(TimeParser.formatTime(bookmark.time))
+        .frame(minWidth: 61)
+        .bpFont(.caption)
+        .foregroundStyle(theme.secondaryColor)
+
+      if let note = bookmark.note {
+        Text(note)
+          .bpFont(.body)
+          .foregroundStyle(theme.primaryColor)
+      }
+
+      Spacer()
+
+      if let imageName = bookmark.getImageNameForType() {
+        Image(systemName: imageName)
+          .foregroundStyle(theme.secondaryColor)
+      }
+    }
   }
 }
 
@@ -191,6 +226,8 @@ extension BookmarksView {
     func handleBookmarkSelected(_ bookmark: SimpleBookmark) {}
     func deleteBookmark(_ bookmark: SimpleBookmark) {}
     func addNote(_ note: String, bookmark: SimpleBookmark) {}
+
+    var libraryServiceForQuotes: LibraryServiceProtocol? { nil }
   }
 }
 

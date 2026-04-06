@@ -35,6 +35,7 @@ final class PlayerViewModel: ObservableObject {
   @Published var hasNextChapter = false
   @Published var hasPreviousChapter = false
   @Published var lastBookmark: SimpleBookmark?
+  @Published var quoteSheetBookmark: SimpleBookmark?
   @Published var sheetStyle: PlayerSheetStyle?
   @Published var displaySheet = false
   @Published var showButtonFreeScreen = false
@@ -710,6 +711,16 @@ final class PlayerViewModel: ObservableObject {
       )
     }
     
+    actions.append(
+      BPActionItem(
+        title: "bookmark_quote_action_title".localized,
+        handler: { [weak self] in
+          self?.currentAlert = nil
+          self?.quoteSheetBookmark = bookmark
+        }
+      )
+    )
+
     actions.append(
       BPActionItem(
         title: "bookmarks_see_title".localized,
