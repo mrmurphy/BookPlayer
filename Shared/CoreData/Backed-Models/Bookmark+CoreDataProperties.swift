@@ -22,6 +22,11 @@ extension Bookmark {
 
   @NSManaged public var time: Double
   @NSManaged public var note: String?
+  @NSManaged public var quoteCleanedText: String?
+  @NSManaged public var quoteLastUpdatedAt: Date?
+  @NSManaged public var quoteRawText: String?
+  @NSManaged public var quoteSecondsAfter: Double
+  @NSManaged public var quoteSecondsBefore: Double
   @NSManaged public var type: BookmarkType
   @NSManaged public var item: LibraryItem?
 }
