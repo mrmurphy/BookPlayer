@@ -73,6 +73,8 @@
 		4138CE1426E554320014F11E /* Bookmark+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4138CE0E26E5540E0014F11E /* Bookmark+CoreDataProperties.swift */; };
 		4138CE1626E584B60014F11E /* BookmarkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4138CE1526E584B60014F11E /* BookmarkType.swift */; };
 		4138CE1726E584B60014F11E /* BookmarkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4138CE1526E584B60014F11E /* BookmarkType.swift */; };
+		8A7F9A333B2E9C1100A1B2C3 /* BookmarkTranscriptState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A323B2E9C1100A1B2C3 /* BookmarkTranscriptState.swift */; };
+		8A7F9A343B2E9C1100A1B2C3 /* BookmarkTranscriptState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A323B2E9C1100A1B2C3 /* BookmarkTranscriptState.swift */; };
 		4138CE1C26E5B42F0014F11E /* BookmarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4138CE1B26E5B42F0014F11E /* BookmarksViewModel.swift */; };
 		4140EA1F22723CFC0009F794 /* CommandParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4140EA1E22723CFC0009F794 /* CommandParser.swift */; };
 		4140EA43227288EF0009F794 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4140EA42227288EF0009F794 /* ExtensionDelegate.swift */; };
@@ -206,6 +208,14 @@
 		41B2A5E121CCC21000917584 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B2A5E021CCC21000917584 /* ThemeManager.swift */; };
 		41B2A5ED21CCC6D100917584 /* AppNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B2A5EC21CCC6D100917584 /* AppNavigationController.swift */; };
 		41B30A33230232D200025D69 /* CarPlayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B30A32230232D200025D69 /* CarPlayManager.swift */; };
+		8A7F9A303B2E9C1100A1B2C3 /* BookmarkTranscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A2F3B2E9C1100A1B2C3 /* BookmarkTranscriptionService.swift */; };
+		8A7F9A3B2E9C1100A1B2C5 /* PlaybackTranscriptStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A3A2E9C1100A1B2C5 /* PlaybackTranscriptStore.swift */; };
+		8A7F9A442E9C1100A1B2C7 /* TranscriptEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A432E9C1100A1B2C7 /* TranscriptEngine.swift */; };
+		8A7F9A462E9C1100A1B2C7 /* AppleSpeechTranscriptEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A452E9C1100A1B2C7 /* AppleSpeechTranscriptEngine.swift */; };
+		8A7F9A482E9C1100A1B2C7 /* ParakeetTranscriptEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A472E9C1100A1B2C7 /* ParakeetTranscriptEngine.swift */; };
+		8A7F9A4A2E9C1100A1B2C7 /* TranscriptEngineFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A492E9C1100A1B2C7 /* TranscriptEngineFactory.swift */; };
+		8A7F9A4C2E9C1100A1B2C7 /* LiveTranscriptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A4B2E9C1100A1B2C7 /* LiveTranscriptController.swift */; };
+		8A7F9A4E2E9C1100A1B2C7 /* ChapterPreviewTranscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A4D2E9C1100A1B2C7 /* ChapterPreviewTranscriptionService.swift */; };
 		41C233FD272E1957006BC7B8 /* SimpleLibraryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41188D3026ED715D0017124E /* SimpleLibraryItem.swift */; };
 		41C233FE272E1958006BC7B8 /* SimpleLibraryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41188D3026ED715D0017124E /* SimpleLibraryItem.swift */; };
 		41C233FF272E195B006BC7B8 /* SimpleItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41546FF226F559CE00825180 /* SimpleItemType.swift */; };
@@ -343,6 +353,7 @@
 		631908A32E3693BC009249C1 /* SettingsPlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631908A22E3693BC009249C1 /* SettingsPlayerControlsView.swift */; };
 		631908A62E369572009249C1 /* ProgressLabelsSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631908A52E369572009249C1 /* ProgressLabelsSectionView.swift */; };
 		631908A82E3697DC009249C1 /* ListOptionsSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631908A72E3697DC009249C1 /* ListOptionsSectionView.swift */; };
+		8A7F9A4A2E9C1100A1B2C8 /* TranscriptEngineSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A492E9C1100A1B2C8 /* TranscriptEngineSectionView.swift */; };
 		631908AA2E369BDB009249C1 /* ProgressSeekingSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631908A92E369BDA009249C1 /* ProgressSeekingSectionView.swift */; };
 		631908AC2E369E31009249C1 /* GlobalSpeedSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631908AB2E369E31009249C1 /* GlobalSpeedSectionView.swift */; };
 		631908AE2E369EDC009249C1 /* BoostVolumeSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631908AD2E369EDC009249C1 /* BoostVolumeSectionView.swift */; };
@@ -587,6 +598,7 @@
 		63C48D522E50AAA1005FBB96 /* AccountPasskeySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C48D532E50AAA1005FBB96 /* AccountPasskeySectionView.swift */; };
 		63C6C2E62B5029BC00FFE0D8 /* SettingsAutolockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6C2E52B5029BC00FFE0D8 /* SettingsAutolockView.swift */; };
 		63C6C2E82B5029FE00FFE0D8 /* SettingsAutolockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6C2E72B5029FE00FFE0D8 /* SettingsAutolockViewModel.swift */; };
+		8A7F9A512E9C1100A1B2C9 /* SettingsTranscriptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A502E9C1100A1B2C9 /* SettingsTranscriptView.swift */; };
 		63C6C30D2B538D8500FFE0D8 /* SyncTasksStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6C30B2B538B7A00FFE0D8 /* SyncTasksStorage.swift */; };
 		63C6C30E2B538D8600FFE0D8 /* SyncTasksStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6C30B2B538B7A00FFE0D8 /* SyncTasksStorage.swift */; };
 		63C6C3112B54F16800FFE0D8 /* LibraryItemSyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6C30F2B54F14800FFE0D8 /* LibraryItemSyncOperation.swift */; };
@@ -698,6 +710,9 @@
 		9F4A33E3292B0C710034CD4C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F4A33E1292B0C710034CD4C /* MainInterface.storyboard */; };
 		9F4A33E7292B0C710034CD4C /* BookPlayerShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9F4A33DD292B0C700034CD4C /* BookPlayerShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F5011F72A620D140075FEBA /* PlayerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5011F62A620D140075FEBA /* PlayerViewModelTests.swift */; };
+		8A7F9A532E9C1100A1B2D1 /* LiveTranscriptRunTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A522E9C1100A1B2D0 /* LiveTranscriptRunTests.swift */; };
+		8A7F9A572E9C1200A1B2D5 /* LiveTranscriptGenerationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A562E9C1200A1B2D4 /* LiveTranscriptGenerationTests.swift */; };
+		8A7F9A552E9C1100A1B2D3 /* MockPlaybackTranscriptStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F9A542E9C1100A1B2D2 /* MockPlaybackTranscriptStore.swift */; };
 		9F5011F92A6580800075FEBA /* ShakeMotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5011F82A6580800075FEBA /* ShakeMotionService.swift */; };
 		9F56C84D287B734C00EA9751 /* BPLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F56C84C287B734C00EA9751 /* BPLogger.swift */; };
 		9F56C84E287B734C00EA9751 /* BPLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F56C84C287B734C00EA9751 /* BPLogger.swift */; };
@@ -984,6 +999,7 @@
 		3FF5BA652E10EA5F00B82BCC /* HardcoverBook+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HardcoverBook+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3FF5BA682E10EA8000B82BCC /* HardcoverBook+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HardcoverBook+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3FF8EA3D2E11C7980054CD2C /* Audiobook Player 10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Audiobook Player 10.xcdatamodel"; sourceTree = "<group>"; };
+		8A7F9A313B2E9C1100A1B2C3 /* Audiobook Player 11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Audiobook Player 11.xcdatamodel"; sourceTree = "<group>"; };
 		3FF8EA452E11E2110054CD2C /* HardcoverBookPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardcoverBookPickerView.swift; sourceTree = "<group>"; };
 		3FF8EA462E11E2110054CD2C /* HardcoverBookPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardcoverBookPickerViewModel.swift; sourceTree = "<group>"; };
 		3FF8EA472E11E2110054CD2C /* HardcoverBookRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardcoverBookRow.swift; sourceTree = "<group>"; };
@@ -1028,6 +1044,7 @@
 		4138CE0D26E5540E0014F11E /* Bookmark+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bookmark+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4138CE0E26E5540E0014F11E /* Bookmark+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bookmark+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4138CE1526E584B60014F11E /* BookmarkType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkType.swift; sourceTree = "<group>"; };
+		8A7F9A323B2E9C1100A1B2C3 /* BookmarkTranscriptState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTranscriptState.swift; sourceTree = "<group>"; };
 		4138CE1B26E5B42F0014F11E /* BookmarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewModel.swift; sourceTree = "<group>"; };
 		4138CE2426E6788D0014F11E /* Audiobook Player 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Audiobook Player 5.xcdatamodel"; sourceTree = "<group>"; };
 		4140EA1E22723CFC0009F794 /* CommandParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandParser.swift; sourceTree = "<group>"; };
@@ -1164,6 +1181,14 @@
 		41B2A5EC21CCC6D100917584 /* AppNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNavigationController.swift; sourceTree = "<group>"; };
 		41B2A6AB21D3274500917584 /* Themeable.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Themeable.framework; path = Carthage/Build/iOS/Themeable.framework; sourceTree = "<group>"; };
 		41B30A32230232D200025D69 /* CarPlayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPlayManager.swift; sourceTree = "<group>"; };
+		8A7F9A2F3B2E9C1100A1B2C3 /* BookmarkTranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTranscriptionService.swift; sourceTree = "<group>"; };
+		8A7F9A3A2E9C1100A1B2C5 /* PlaybackTranscriptStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackTranscriptStore.swift; sourceTree = "<group>"; };
+		8A7F9A432E9C1100A1B2C7 /* TranscriptEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptEngine.swift; sourceTree = "<group>"; };
+		8A7F9A452E9C1100A1B2C7 /* AppleSpeechTranscriptEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSpeechTranscriptEngine.swift; sourceTree = "<group>"; };
+		8A7F9A472E9C1100A1B2C7 /* ParakeetTranscriptEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParakeetTranscriptEngine.swift; sourceTree = "<group>"; };
+		8A7F9A492E9C1100A1B2C7 /* TranscriptEngineFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptEngineFactory.swift; sourceTree = "<group>"; };
+		8A7F9A4B2E9C1100A1B2C7 /* LiveTranscriptController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTranscriptController.swift; sourceTree = "<group>"; };
+		8A7F9A4D2E9C1100A1B2C7 /* ChapterPreviewTranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterPreviewTranscriptionService.swift; sourceTree = "<group>"; };
 		41C3394825E04091003ED2B0 /* MappingModel_v2_to_v3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MappingModel_v2_to_v3.xcmappingmodel; sourceTree = "<group>"; };
 		41C3CF7D20AEA5E5007C3EF4 /* DataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerTests.swift; sourceTree = "<group>"; };
 		41C8ABD026836F50003B67D1 /* ImportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewModel.swift; sourceTree = "<group>"; };
@@ -1258,6 +1283,7 @@
 		631908A22E3693BC009249C1 /* SettingsPlayerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPlayerControlsView.swift; sourceTree = "<group>"; };
 		631908A52E369572009249C1 /* ProgressLabelsSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressLabelsSectionView.swift; sourceTree = "<group>"; };
 		631908A72E3697DC009249C1 /* ListOptionsSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOptionsSectionView.swift; sourceTree = "<group>"; };
+		8A7F9A492E9C1100A1B2C8 /* TranscriptEngineSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptEngineSectionView.swift; sourceTree = "<group>"; };
 		631908A92E369BDA009249C1 /* ProgressSeekingSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSeekingSectionView.swift; sourceTree = "<group>"; };
 		631908AB2E369E31009249C1 /* GlobalSpeedSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSpeedSectionView.swift; sourceTree = "<group>"; };
 		631908AD2E369EDC009249C1 /* BoostVolumeSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoostVolumeSectionView.swift; sourceTree = "<group>"; };
@@ -1505,6 +1531,7 @@
 		63C48D532E50AAA1005FBB96 /* AccountPasskeySectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPasskeySectionView.swift; sourceTree = "<group>"; };
 		63C6C2E52B5029BC00FFE0D8 /* SettingsAutolockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAutolockView.swift; sourceTree = "<group>"; };
 		63C6C2E72B5029FE00FFE0D8 /* SettingsAutolockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAutolockViewModel.swift; sourceTree = "<group>"; };
+		8A7F9A502E9C1100A1B2C9 /* SettingsTranscriptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTranscriptView.swift; sourceTree = "<group>"; };
 		63C6C30B2B538B7A00FFE0D8 /* SyncTasksStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncTasksStorage.swift; sourceTree = "<group>"; };
 		63C6C30F2B54F14800FFE0D8 /* LibraryItemSyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryItemSyncOperation.swift; sourceTree = "<group>"; };
 		63C6C3172B5E0FE700FFE0D8 /* SyncTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncTask.swift; sourceTree = "<group>"; };
@@ -1605,6 +1632,9 @@
 		9F5011F32A62027C0075FEBA /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = nb; path = nb.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		9F5011F42A62027C0075FEBA /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9F5011F62A620D140075FEBA /* PlayerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModelTests.swift; sourceTree = "<group>"; };
+		8A7F9A522E9C1100A1B2D0 /* LiveTranscriptRunTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player/LiveTranscriptRunTests.swift"; sourceTree = "<group>"; };
+		8A7F9A562E9C1200A1B2D4 /* LiveTranscriptGenerationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player/LiveTranscriptGenerationTests.swift"; sourceTree = "<group>"; };
+		8A7F9A542E9C1100A1B2D2 /* MockPlaybackTranscriptStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPlaybackTranscriptStore.swift; sourceTree = "<group>"; };
 		9F5011F82A6580800075FEBA /* ShakeMotionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeMotionService.swift; sourceTree = "<group>"; };
 		9F56C84C287B734C00EA9751 /* BPLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPLogger.swift; sourceTree = "<group>"; };
 		9F5F12DA2976E8CD00F061A0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -2138,6 +2168,8 @@
 				4163E312214AC43000072AA2 /* ImportOperationTests.swift */,
 				41C3CF7D20AEA5E5007C3EF4 /* DataManagerTests.swift */,
 				9F5011F62A620D140075FEBA /* PlayerViewModelTests.swift */,
+				8A7F9A522E9C1100A1B2D0 /* LiveTranscriptRunTests.swift */,
+				8A7F9A562E9C1200A1B2D4 /* LiveTranscriptGenerationTests.swift */,
 				9F8A9A5D27AC3F8C0093AA1C /* PlayableItemTests.swift */,
 				9FB7C48C2835A2C1003B917E /* PlayerManagerTests.swift */,
 				6279361D272D0CF50097837D /* Coordinators */,
@@ -2421,6 +2453,7 @@
 				4138CE0D26E5540E0014F11E /* Bookmark+CoreDataClass.swift */,
 				4138CE0E26E5540E0014F11E /* Bookmark+CoreDataProperties.swift */,
 				4138CE1526E584B60014F11E /* BookmarkType.swift */,
+				8A7F9A323B2E9C1100A1B2C3 /* BookmarkTranscriptState.swift */,
 				41A1B111226F88C500EA0400 /* Chapter+CoreDataClass.swift */,
 				41A1B112226F88C500EA0400 /* Chapter+CoreDataProperties.swift */,
 				41A1B11B226F88C500EA0400 /* Folder+CoreDataClass.swift */,
@@ -2466,6 +2499,7 @@
 				9FC1E4622814F80000522FA8 /* AccountServiceMock.swift */,
 				9FC1E46828150ECC00522FA8 /* NetworkClientMock.swift */,
 				9F1C30FB2A2E593300D5BC81 /* PlayableItemMock.swift */,
+				8A7F9A542E9C1100A1B2D2 /* MockPlaybackTranscriptStore.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -2547,6 +2581,7 @@
 				631908AB2E369E31009249C1 /* GlobalSpeedSectionView.swift */,
 				631908A92E369BDA009249C1 /* ProgressSeekingSectionView.swift */,
 				631908A72E3697DC009249C1 /* ListOptionsSectionView.swift */,
+				8A7F9A492E9C1100A1B2C8 /* TranscriptEngineSectionView.swift */,
 				631908A52E369572009249C1 /* ProgressLabelsSectionView.swift */,
 			);
 			path = PlayerControls;
@@ -2974,6 +3009,13 @@
 				419723FF21874D5F00AB1190 /* UserActivityManager.swift */,
 				41D39D40215F177D00B65290 /* BookActivityItemProvider.swift */,
 				41B30A32230232D200025D69 /* CarPlayManager.swift */,
+				8A7F9A2F3B2E9C1100A1B2C3 /* BookmarkTranscriptionService.swift */,
+				8A7F9A3A2E9C1100A1B2C5 /* PlaybackTranscriptStore.swift */,
+				8A7F9A432E9C1100A1B2C7 /* TranscriptEngine.swift */,
+				8A7F9A452E9C1100A1B2C7 /* AppleSpeechTranscriptEngine.swift */,
+				8A7F9A472E9C1100A1B2C7 /* ParakeetTranscriptEngine.swift */,
+				8A7F9A492E9C1100A1B2C7 /* TranscriptEngineFactory.swift */,
+				8A7F9A4D2E9C1100A1B2C7 /* ChapterPreviewTranscriptionService.swift */,
 				4193E201243A91AE004D6A82 /* ActionParserService.swift */,
 				9F82DF9B27DFE46B001B0EA8 /* PhoneWatchConnectivityService.swift */,
 				63B50F042B692E4200BCABBA /* ListSyncRefreshService.swift */,
@@ -3296,6 +3338,14 @@
 			path = Library;
 			sourceTree = "<group>";
 		};
+		8A7F9A522E9C1100A1B2C9 /* Transcript */ = {
+			isa = PBXGroup;
+			children = (
+				8A7F9A502E9C1100A1B2C9 /* SettingsTranscriptView.swift */,
+			);
+			path = Transcript;
+			sourceTree = "<group>";
+		};
 		C35E04F2207E8D4C007D3370 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -3304,6 +3354,7 @@
 				4124121B26CF289B00B099DB /* Storage */,
 				6304CF682B4C2AB000055285 /* Autoplay */,
 				63C6C2E42B50299D00FFE0D8 /* Autolock */,
+				8A7F9A522E9C1100A1B2C9 /* Transcript */,
 				6370427E2E2BEAC7005353D1 /* SettingsView.swift */,
 				63C48D3B2E3E7D29005FBB96 /* SettingsCompleteAccountView.swift */,
 				631908A02E33EF50009249C1 /* ConfettiView.swift */,
@@ -3420,6 +3471,7 @@
 				9F64C6222793C37C00B2493C /* Controls */,
 				9F3D0CE328C2BF2A00E9E8A3 /* ButtonFree */,
 				410D0FF01EDF659900A52EB9 /* PlayerManager.swift */,
+				8A7F9A4B2E9C1100A1B2C7 /* LiveTranscriptController.swift */,
 				63E893972CAFAC7500946CD4 /* PlayerManagerProtocol.swift */,
 				63E893912CAFA89000946CD4 /* BPPlayerError.swift */,
 				63E893942CAFAB8F00946CD4 /* PlayerLoaderService.swift */,
@@ -3599,6 +3651,7 @@
 				41F1A227254B0C6C0043FCF3 /* ZipArchive */,
 				8A495CC52CC85D27001B4244 /* JellyfinAPI */,
 				63AE44722E6161B60088668F /* DirectoryWatcher */,
+				8A7F9A412E9C1100A1B2C6 /* FluidAudio */,
 			);
 			productName = "Audiobook Player";
 			productReference = 418B6CF81D2707F800F974FB /* BookPlayer.app */;
@@ -3713,7 +3766,7 @@
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = S7TJSJXWUZ;
 						LastSwiftMigration = 1020;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -3778,7 +3831,7 @@
 				ca,
 			);
 			mainGroup = 418B6CEF1D2707F700F974FB;
-			packageReferences = (
+				packageReferences = (
 				41F1A1D5254B07E80043FCF3 /* XCRemoteSwiftPackageReference "MarqueeLabel" */,
 				41F1A1DE254B08A10043FCF3 /* XCRemoteSwiftPackageReference "DeviceKit" */,
 				41F1A1F0254B09020043FCF3 /* XCRemoteSwiftPackageReference "IDZSwiftCommonCrypto" */,
@@ -3789,6 +3842,7 @@
 				9FE8188D2805BCE40089A41E /* XCRemoteSwiftPackageReference "purchases-ios" */,
 				8A495CC42CC8589F001B4244 /* XCRemoteSwiftPackageReference "jellyfin-sdk-swift" */,
 				63AE44712E6161B60088668F /* XCRemoteSwiftPackageReference "DirectoryWatcher" */,
+				8A7F9A402E9C1100A1B2C6 /* XCRemoteSwiftPackageReference "FluidAudio" */,
 			);
 			productRefGroup = 418B6CF91D2707F800F974FB /* Products */;
 			projectDirPath = "";
@@ -4078,6 +4132,7 @@
 				9FF383D42A40F97000BBAC11 /* MappingModel_v8_to_v9.xcmappingmodel in Sources */,
 				3F66408B2E162ABF00356522 /* AudioMetadataService.swift in Sources */,
 				4138CE1726E584B60014F11E /* BookmarkType.swift in Sources */,
+				8A7F9A343B2E9C1100A1B2C3 /* BookmarkTranscriptState.swift in Sources */,
 				9F9C7B5429F9672700E257B0 /* SyncableBookmark.swift in Sources */,
 				5126F123258E9F18009965DC /* URL+BookPlayer.swift in Sources */,
 				9FFCC090289418CA00F4952E /* SimpleChapter.swift in Sources */,
@@ -4320,6 +4375,14 @@
 				639DF49A2E6350D700B29BBB /* MiniPlayerView.swift in Sources */,
 				63C48D3E2E3E7F9E005FBB96 /* LoginViewModel.swift in Sources */,
 				41B30A33230232D200025D69 /* CarPlayManager.swift in Sources */,
+				8A7F9A303B2E9C1100A1B2C3 /* BookmarkTranscriptionService.swift in Sources */,
+				8A7F9A3B2E9C1100A1B2C5 /* PlaybackTranscriptStore.swift in Sources */,
+				8A7F9A442E9C1100A1B2C7 /* TranscriptEngine.swift in Sources */,
+				8A7F9A462E9C1100A1B2C7 /* AppleSpeechTranscriptEngine.swift in Sources */,
+				8A7F9A482E9C1100A1B2C7 /* ParakeetTranscriptEngine.swift in Sources */,
+				8A7F9A4A2E9C1100A1B2C7 /* TranscriptEngineFactory.swift in Sources */,
+				8A7F9A4C2E9C1100A1B2C7 /* LiveTranscriptController.swift in Sources */,
+				8A7F9A4E2E9C1100A1B2C7 /* ChapterPreviewTranscriptionService.swift in Sources */,
 				637043502E2C0491005353D1 /* SettingsCreditsSectionView.swift in Sources */,
 				63C48D422E3E8189005FBB96 /* AccountDeleteSectionView.swift in Sources */,
 				631C75C72AB92BE20013E7E5 /* BPCoordinatorPresentationFlow.swift in Sources */,
@@ -4348,6 +4411,7 @@
 				634BA54C2C0C21AF0015314D /* SecondOnboardingCoordinator.swift in Sources */,
 				631908AE2E369EDC009249C1 /* BoostVolumeSectionView.swift in Sources */,
 				63C6C2E62B5029BC00FFE0D8 /* SettingsAutolockView.swift in Sources */,
+				8A7F9A512E9C1100A1B2C9 /* SettingsTranscriptView.swift in Sources */,
 				4124122826D19A8700B099DB /* StorageViewModel.swift in Sources */,
 				4158387926EB8D8800F4A12B /* LoadingViewController.swift in Sources */,
 				6356F9D02ACB01C700B7A027 /* PausePlaybackIntent.swift in Sources */,
@@ -4385,6 +4449,7 @@
 				41DA44BD26FAEC4F00F3A05D /* BookActivityItemProvider.swift in Sources */,
 				62793611272CBE910097837D /* ImportFileItem.swift in Sources */,
 				631908A82E3697DC009249C1 /* ListOptionsSectionView.swift in Sources */,
+				8A7F9A4A2E9C1100A1B2C8 /* TranscriptEngineSectionView.swift in Sources */,
 				4138CE1C26E5B42F0014F11E /* BookmarksViewModel.swift in Sources */,
 				8A9D0D2C2CCFBEEE007A924D /* JellyfinLibraryItemImageView.swift in Sources */,
 				6319089F2E33C7D0009249C1 /* SettingsTipView.swift in Sources */,
@@ -4573,6 +4638,9 @@
 				6906A553217211C600A9E0B2 /* StubFactory.swift in Sources */,
 				6906A55021720FDF00A9E0B2 /* BookSortServiceTest.swift in Sources */,
 				9F5011F72A620D140075FEBA /* PlayerViewModelTests.swift in Sources */,
+				8A7F9A532E9C1100A1B2D1 /* LiveTranscriptRunTests.swift in Sources */,
+				8A7F9A572E9C1200A1B2D5 /* LiveTranscriptGenerationTests.swift in Sources */,
+				8A7F9A552E9C1100A1B2D3 /* MockPlaybackTranscriptStore.swift in Sources */,
 				9FC1E4632814F80000522FA8 /* AccountServiceMock.swift in Sources */,
 				9FC1E4672815091A00522FA8 /* AccountServiceTests.swift in Sources */,
 				9FC1E4772815F97E00522FA8 /* KeychainServiceTests.swift in Sources */,
@@ -4595,6 +4663,7 @@
 				4124AB2125DFE1A60007C839 /* CoreDataStack.swift in Sources */,
 				41A1B11F226F88C500EA0400 /* Chapter+CoreDataClass.swift in Sources */,
 				4138CE1626E584B60014F11E /* BookmarkType.swift in Sources */,
+				8A7F9A333B2E9C1100A1B2C3 /* BookmarkTranscriptState.swift in Sources */,
 				63125D0E2C36D84E00D35533 /* EventsAPI.swift in Sources */,
 				412AB7092701421600969618 /* ManualOrderMigrationUtils.swift in Sources */,
 				63344C032EA7097D00B90DF7 /* DatabaseBackupService.swift in Sources */,
@@ -4945,7 +5014,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -4961,7 +5030,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BP_BUNDLE_IDENTIFIER).BookPlayerIntents";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "$(BP_PROVISIONING_INTENTS)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
@@ -4979,7 +5047,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -4994,7 +5062,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BP_BUNDLE_IDENTIFIER).BookPlayerIntents";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "$(BP_PROVISIONING_INTENTS)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5011,7 +5078,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -5026,7 +5093,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BP_BUNDLE_IDENTIFIER).BookPlayerIntents";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "$(BP_PROVISIONING_INTENTS)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5050,7 +5116,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = BookPlayerWatch/BookPlayerWatch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -5064,7 +5130,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BP_BUNDLE_IDENTIFIER).watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "$(BP_PROVISIONING_WATCH)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -5092,7 +5157,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = BookPlayerWatch/BookPlayerWatch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -5105,7 +5170,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BP_BUNDLE_IDENTIFIER).watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "$(BP_PROVISIONING_WATCH)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -5131,7 +5195,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = BookPlayerWatch/BookPlayerWatch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -5144,7 +5208,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BP_BUNDLE_IDENTIFIER).watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "$(BP_PROVISIONING_WATCH)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -5164,7 +5227,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "$(inherited)";
@@ -5209,7 +5272,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "$(inherited)";
@@ -5252,7 +5315,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "$(inherited)";
@@ -5298,7 +5361,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = BookPlayerWidgets/BookPlayerWidgets.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -5314,7 +5377,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BP_BUNDLE_IDENTIFIER).BookPlayerWidgetUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "$(BP_PROVISIONING_WIDGET_UI)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
@@ -5336,7 +5398,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = BookPlayerWidgets/BookPlayerWidgets.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -5351,7 +5413,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BP_BUNDLE_IDENTIFIER).BookPlayerWidgetUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "$(BP_PROVISIONING_WIDGET_UI)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5372,7 +5433,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = BookPlayerWidgets/BookPlayerWidgets.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -5387,7 +5448,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BP_BUNDLE_IDENTIFIER).BookPlayerWidgetUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "$(BP_PROVISIONING_WIDGET_UI)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5522,7 +5582,7 @@
 				CODE_SIGN_ENTITLEMENTS = "BookPlayer/$(BP_ENTITLEMENTS).entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "$(inherited)";
@@ -5540,7 +5600,6 @@
 				MARKETING_VERSION = 5.15.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BP_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = BookPlayer;
-				PROVISIONING_PROFILE_SPECIFIER = "$(BP_PROVISIONING_MAIN)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -5562,7 +5621,7 @@
 				CODE_SIGN_ENTITLEMENTS = "BookPlayer/$(BP_ENTITLEMENTS).entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5579,7 +5638,6 @@
 				MARKETING_VERSION = 5.15.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BP_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = BookPlayer;
-				PROVISIONING_PROFILE_SPECIFIER = "$(BP_PROVISIONING_MAIN)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -5598,7 +5656,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				INFOPLIST_FILE = BookPlayerTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
@@ -5623,7 +5681,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				INFOPLIST_FILE = BookPlayerTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
@@ -5652,7 +5710,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "$(inherited)";
@@ -5698,7 +5756,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "$(inherited)";
@@ -5742,7 +5800,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "$(inherited)";
@@ -5788,7 +5846,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = BookPlayerWidgets/BookPlayerWidgets.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -5803,7 +5861,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BP_BUNDLE_IDENTIFIER).watchkitapp.widgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "$(BP_PROVISIONING_WATCH_WIDGETS)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -5826,7 +5883,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = BookPlayerWidgets/BookPlayerWidgets.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -5840,7 +5897,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BP_BUNDLE_IDENTIFIER).watchkitapp.widgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "$(BP_PROVISIONING_WATCH_WIDGETS)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -5862,7 +5918,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = BookPlayerWidgets/BookPlayerWidgets.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -5876,7 +5932,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BP_BUNDLE_IDENTIFIER).watchkitapp.widgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "$(BP_PROVISIONING_WATCH_WIDGETS)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -5897,7 +5952,7 @@
 				CODE_SIGN_ENTITLEMENTS = BookPlayerShareExtension/BookPlayerShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -5916,7 +5971,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BP_BUNDLE_IDENTIFIER).BookPlayerShareExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "$(BP_PROVISIONING_SHARE_EXTENSION)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -5937,7 +5991,7 @@
 				CODE_SIGN_ENTITLEMENTS = BookPlayerShareExtension/BookPlayerShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -5955,7 +6009,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BP_BUNDLE_IDENTIFIER).BookPlayerShareExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "$(BP_PROVISIONING_SHARE_EXTENSION)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -5975,7 +6028,7 @@
 				CODE_SIGN_ENTITLEMENTS = BookPlayerShareExtension/BookPlayerShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -5993,7 +6046,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BP_BUNDLE_IDENTIFIER).BookPlayerShareExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "$(BP_PROVISIONING_SHARE_EXTENSION)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -6068,7 +6120,7 @@
 				CODE_SIGN_ENTITLEMENTS = "BookPlayer/$(BP_ENTITLEMENTS).entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6085,7 +6137,6 @@
 				MARKETING_VERSION = 5.15.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BP_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = BookPlayer;
-				PROVISIONING_PROFILE_SPECIFIER = "$(BP_PROVISIONING_MAIN)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -6104,7 +6155,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				INFOPLIST_FILE = BookPlayerTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
@@ -6292,6 +6343,14 @@
 				minimumVersion = 2.8.6;
 			};
 		};
+		8A7F9A402E9C1100A1B2C6 /* XCRemoteSwiftPackageReference "FluidAudio" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/FluidInference/FluidAudio.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.9;
+			};
+		};
 		8A495CC42CC8589F001B4244 /* XCRemoteSwiftPackageReference "jellyfin-sdk-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jellyfin/jellyfin-sdk-swift.git";
@@ -6305,7 +6364,7 @@
 			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.33.0;
+				minimumVersion = 5.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -6371,12 +6430,18 @@
 			package = 9FE8188D2805BCE40089A41E /* XCRemoteSwiftPackageReference "purchases-ios" */;
 			productName = RevenueCat;
 		};
+		8A7F9A412E9C1100A1B2C6 /* FluidAudio */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A7F9A402E9C1100A1B2C6 /* XCRemoteSwiftPackageReference "FluidAudio" */;
+			productName = FluidAudio;
+		};
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		4165EDF920A743D500616EDF /* BookPlayer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				8A7F9A313B2E9C1100A1B2C3 /* Audiobook Player 11.xcdatamodel */,
 				3FF8EA3D2E11C7980054CD2C /* Audiobook Player 10.xcdatamodel */,
 				9F7B646F28031E9300895ECC /* Audiobook Player 9.xcdatamodel */,
 				624EB9832755D8E700D462A8 /* Audiobook Player 8.xcdatamodel */,
@@ -6388,7 +6453,7 @@
 				41D20DAD25D5F0CA00AAEE30 /* Audiobook Player 2.xcdatamodel */,
 				4165EDFA20A743D500616EDF /* Audiobook Player.xcdatamodel */,
 			);
-			currentVersion = 3FF8EA3D2E11C7980054CD2C /* Audiobook Player 10.xcdatamodel */;
+			currentVersion = 8A7F9A313B2E9C1100A1B2C3 /* Audiobook Player 11.xcdatamodel */;
 			path = BookPlayer.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

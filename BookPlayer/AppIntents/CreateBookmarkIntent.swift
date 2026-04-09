@@ -26,6 +26,9 @@ struct CreateBookmarkIntent: AppIntent {
   @Dependency
   var libraryService: LibraryService
 
+  @Dependency
+  var bookmarkTranscriptionService: BookmarkTranscriptionService
+
   func perform() async throws -> some IntentResult & ReturnsValue<String> & ProvidesDialog {
     guard let currentItem = playerLoaderService.playerManager.currentItem else {
       return .result(
@@ -70,6 +73,7 @@ struct CreateBookmarkIntent: AppIntent {
         time: floor(currentTime),
         note: note
       )
+      bookmarkTranscriptionService.startTranscription(for: bookmark, in: currentItem)
 
       let formattedTime = TimeParser.formatTime(bookmark.time)
       return .result(

@@ -93,6 +93,8 @@ struct SettingsView: View {
           view = AnyView(SettingsAutoplayView())
         case .autolock:
           view = AnyView(SettingsAutolockView())
+        case .transcript:
+          view = AnyView(SettingsTranscriptView(transcriptStore: AppDelegate.shared?.coreServices?.transcriptStore))
         case .storage:
           view = AnyView(
             StorageView(

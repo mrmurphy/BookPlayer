@@ -14,21 +14,25 @@ final class BookmarksViewModel: BookmarksView.Model {
   let playerManager: PlayerManagerProtocol
   let libraryService: LibraryServiceProtocol
   let syncService: SyncServiceProtocol
+  let bookmarkTranscriptionService: BookmarkTranscriptionServiceProtocol
 
   private var disposeBag = Set<AnyCancellable>()
 
   init(
     playerManager: PlayerManagerProtocol,
     libraryService: LibraryServiceProtocol,
-    syncService: SyncServiceProtocol
+    syncService: SyncServiceProtocol,
+    bookmarkTranscriptionService: BookmarkTranscriptionServiceProtocol
   ) {
     self.playerManager = playerManager
     self.libraryService = libraryService
     self.syncService = syncService
+    self.bookmarkTranscriptionService = bookmarkTranscriptionService
     
     super.init()
     
     self.bindCurrentItemObserver()
+    self.bindTranscriptUpdates()
   }
 
   func bindCurrentItemObserver() {
@@ -79,9 +83,64 @@ final class BookmarksViewModel: BookmarksView.Model {
   }
 
   override func deleteBookmark(_ bookmark: SimpleBookmark) {
+    bookmarkTranscriptionService.cancelTranscription(for: bookmark)
     libraryService.deleteBookmark(bookmark)
     userBookmarks = getUserBookmarks(for: bookmark.relativePath)
     syncService.scheduleDeleteBookmark(bookmark)
+  }
+
+  override func ensureTranscript(_ bookmark: SimpleBookmark) {
+    guard let currentItem else { return }
+
+    switch bookmark.transcriptState {
+    case .none, .failed:
+      bookmarkTranscriptionService.startTranscription(for: bookmark, in: currentItem)
+    case .pending, .ready:
+      break
+    }
+  }
+
+  override func adjustTranscriptStart(_ bookmark: SimpleBookmark, delta: TimeInterval) {
+    guard let currentItem else { return }
+
+    let newStart = min(
+      max(bookmark.transcriptStartOffset + delta, Constants.BookmarkTranscript.minOffset),
+      Constants.BookmarkTranscript.maxOffset
+    )
+
+    bookmarkTranscriptionService.updateTranscriptRange(
+      for: bookmark,
+      in: currentItem,
+      startOffset: newStart,
+      endOffset: bookmark.transcriptEndOffset
+    )
+  }
+
+  override func adjustTranscriptEnd(_ bookmark: SimpleBookmark, delta: TimeInterval) {
+    guard let currentItem else { return }
+
+    let newEnd = min(
+      max(bookmark.transcriptEndOffset + delta, Constants.BookmarkTranscript.minOffset),
+      Constants.BookmarkTranscript.maxOffset
+    )
+
+    bookmarkTranscriptionService.updateTranscriptRange(
+      for: bookmark,
+      in: currentItem,
+      startOffset: bookmark.transcriptStartOffset,
+      endOffset: newEnd
+    )
+  }
+
+  private func bindTranscriptUpdates() {
+    bookmarkTranscriptionService.bookmarkUpdatesPublisher
+      .receive(on: DispatchQueue.main)
+      .sink { [weak self] relativePath in
+        guard let self = self else { return }
+        guard let currentItem = self.currentItem, currentItem.relativePath == relativePath else { return }
+        self.userBookmarks = self.getUserBookmarks(for: relativePath)
+      }
+      .store(in: &disposeBag)
   }
 
   func syncBookmarks(for relativePath: String) {

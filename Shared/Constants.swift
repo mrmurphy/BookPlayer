@@ -85,11 +85,37 @@ public enum Constants {
     public static let quickSpeedFirstPreference = "quickSpeedFirstPreference"
     public static let quickSpeedSecondPreference = "quickSpeedSecondPreference"
     public static let quickSpeedThirdPreference = "quickSpeedThirdPreference"
+
+    /// Transcript engine: "apple" (default) or "parakeet". Parakeet requires iOS 17+.
+    public static let transcriptEngine = "userSettingsTranscriptEngine"
+    /// Parakeet model version: "v2" or "v3". Used when transcript engine is Parakeet.
+    public static let parakeetModelVersion = "userSettingsParakeetModelVersion"
+    /// Set to true when Parakeet ASR model V2 has been successfully downloaded and loaded at least once.
+    public static let parakeetModelDownloadedV2 = "userSettingsParakeetModelDownloadedV2"
+    /// Set to true when Parakeet ASR model V3 has been successfully downloaded and loaded at least once.
+    public static let parakeetModelDownloadedV3 = "userSettingsParakeetModelDownloadedV3"
+    /// Deprecated: use parakeetModelDownloadedV2 / parakeetModelDownloadedV3.
+    public static let parakeetModelDownloaded = "userSettingsParakeetModelDownloaded"
   }
 
   public enum SmartRewind {
     public static let threshold: TimeInterval = 60 * 60 // 60 minutes
     public static let minRewind: TimeInterval = 2
+  }
+
+  public enum BookmarkTranscript {
+    public static let defaultStartOffset: TimeInterval = 3
+    public static let defaultEndOffset: TimeInterval = 10
+    public static let adjustmentStep: TimeInterval = 2
+    public static let minOffset: TimeInterval = 0
+    public static let maxOffset: TimeInterval = 30
+    /// Apple's Speech framework allows up to one minute of audio per request. Segments longer than this are clamped.
+    public static let maxSegmentDuration: TimeInterval = 60
+  }
+
+  /// Duration (seconds) of chapter start transcribed for the chapters list preview.
+  public enum ChapterPreview {
+    public static let defaultDuration: TimeInterval = 15
   }
 
   public enum Volume {

@@ -2142,9 +2142,22 @@ extension LibraryService {
         let type = BookmarkType(rawValue: rawType)
       else { return nil }
 
+      let transcriptStateRaw = dictionary["transcriptState"] as? Int16 ?? BookmarkTranscriptState.none.rawValue
+      var transcriptState = BookmarkTranscriptState(rawValue: transcriptStateRaw) ?? .none
+      let transcriptText = dictionary["transcriptText"] as? String
+      if transcriptState == .none, let transcriptText, !transcriptText.isEmpty {
+        transcriptState = .ready
+      }
+
       return SimpleBookmark(
         time: time,
         note: dictionary["note"] as? String,
+        transcriptText: transcriptText,
+        transcriptStartOffset: dictionary["transcriptStartOffset"] as? Double
+          ?? Constants.BookmarkTranscript.defaultStartOffset,
+        transcriptEndOffset: dictionary["transcriptEndOffset"] as? Double
+          ?? Constants.BookmarkTranscript.defaultEndOffset,
+        transcriptState: transcriptState,
         type: type,
         relativePath: relativePath
       )
@@ -2211,6 +2224,11 @@ extension LibraryService {
     guard let item = self.getItemReference(with: relativePath) else { return nil }
 
     let bookmark = Bookmark(with: finalTime, type: type, context: self.dataManager.getContext())
+    if type == .user {
+      bookmark.transcriptStartOffset = Constants.BookmarkTranscript.defaultStartOffset
+      bookmark.transcriptEndOffset = Constants.BookmarkTranscript.defaultEndOffset
+      bookmark.transcriptState = BookmarkTranscriptState.none.rawValue
+    }
     item.addToBookmarks(bookmark)
 
     self.dataManager.saveContext()
@@ -2218,6 +2236,10 @@ extension LibraryService {
     return SimpleBookmark(
       time: finalTime,
       note: nil,
+      transcriptText: nil,
+      transcriptStartOffset: bookmark.transcriptStartOffset,
+      transcriptEndOffset: bookmark.transcriptEndOffset,
+      transcriptState: .none,
       type: type,
       relativePath: relativePath
     )

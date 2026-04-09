@@ -16,6 +16,7 @@ struct SettingsPlaybackSectionView: View {
       NavigationLink("settings_controls_title", value: SettingsScreen.controls)
       NavigationLink("settings_autoplay_section_title".localized.localizedCapitalized, value: SettingsScreen.autoplay)
       NavigationLink("settings_autlock_section_title", value: SettingsScreen.autolock)
+      NavigationLink("settings_transcript_title", value: SettingsScreen.transcript)
     } header: {
       Text("settings_playback_title")
         .foregroundStyle(theme.secondaryColor)

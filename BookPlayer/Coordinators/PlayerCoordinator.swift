@@ -15,8 +15,11 @@ class PlayerCoordinator: Coordinator {
   let playerManager: PlayerManager
   let libraryService: LibraryService
   let syncService: SyncServiceProtocol
+  let bookmarkTranscriptionService: BookmarkTranscriptionServiceProtocol
+  let transcriptStore: PlaybackTranscriptStore
 
   let flow: BPCoordinatorPresentationFlow
+  let liveTranscriptController: LiveTranscriptController
 
   weak var alert: UIAlertController?
   weak var playerViewController: PlayerViewController!
@@ -31,12 +34,21 @@ class PlayerCoordinator: Coordinator {
     flow: BPModalOnlyPresentationFlow,
     playerManager: PlayerManager,
     libraryService: LibraryService,
-    syncService: SyncServiceProtocol
+    syncService: SyncServiceProtocol,
+    bookmarkTranscriptionService: BookmarkTranscriptionServiceProtocol,
+    transcriptStore: PlaybackTranscriptStore
   ) {
     self.flow = flow
     self.playerManager = playerManager
     self.libraryService = libraryService
     self.syncService = syncService
+    self.bookmarkTranscriptionService = bookmarkTranscriptionService
+    self.transcriptStore = transcriptStore
+    self.liveTranscriptController = LiveTranscriptController(
+      provider: playerManager,
+      store: transcriptStore,
+      engineFactory: { TranscriptEngineFactory.makeEngine() }
+    )
   }
 
   func start() {
@@ -45,7 +57,9 @@ class PlayerCoordinator: Coordinator {
     let viewModel = PlayerViewModel(
       playerManager: self.playerManager,
       libraryService: self.libraryService,
-      syncService: self.syncService
+      syncService: self.syncService,
+      bookmarkTranscriptionService: self.bookmarkTranscriptionService,
+      liveTranscriptController: self.liveTranscriptController
     )
     viewModel.onTransition = { routes in
       switch routes {
@@ -68,7 +82,8 @@ class PlayerCoordinator: Coordinator {
         BookmarksViewModel(
           playerManager: self.playerManager,
           libraryService: self.libraryService,
-          syncService: self.syncService
+          syncService: self.syncService,
+          bookmarkTranscriptionService: self.bookmarkTranscriptionService
         )
       }
     )
@@ -82,7 +97,8 @@ class PlayerCoordinator: Coordinator {
         ButtonFreeViewModel(
           playerManager: self.playerManager,
           libraryService: self.libraryService,
-          syncService: self.syncService
+          syncService: self.syncService,
+          bookmarkTranscriptionService: self.bookmarkTranscriptionService
         )
       }
     )
@@ -92,9 +108,16 @@ class PlayerCoordinator: Coordinator {
   }
 
   func showChapters() {
+    let chapterPreviewService = ChapterPreviewTranscriptionService(
+      store: transcriptStore,
+      engineFactory: { TranscriptEngineFactory.makeEngine() }
+    )
     let vc = UIHostingController(
       rootView: ChaptersView {
-        ChaptersViewModel(playerManager: self.playerManager)
+        ChaptersViewModel(
+          playerManager: self.playerManager,
+          chapterPreviewService: chapterPreviewService
+        )
       }
     )
 
